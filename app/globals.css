@@ -17,75 +17,111 @@
   --font-sans: var(--font-lato);
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   background: var(--cream);
   color: var(--text-dark);
   font-family: var(--font-lato), sans-serif;
   font-weight: 300;
-  letter-spacing: 0.02em;
 }
 
-.font-serif {
-  font-family: var(--font-cormorant), Georgia, serif;
-}
-
-.section-dark {
-  background-color: var(--dark);
-  color: var(--text-cream);
-}
-
-.section-cream {
-  background-color: var(--cream);
-  color: var(--text-dark);
-}
-
-.section-cream-2 {
-  background-color: var(--cream-2);
-  color: var(--text-dark);
-}
-
-.gold-text {
-  color: var(--gold);
-}
-
-.gold-border {
-  border-color: var(--gold);
-}
-
-.divider-gold {
-  width: 60px;
-  height: 1px;
-  background: var(--gold);
-  margin: 0 auto;
-}
-
-/* Polaroid styles */
-.polaroid {
-  background: #fff;
-  padding: 8px 8px 28px 8px;
-  box-shadow: 2px 4px 12px rgba(0,0,0,0.35);
-}
-
-/* Nav */
-.wedding-nav a {
-  font-family: var(--font-lato), sans-serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  transition: color 0.2s;
-}
-
-/* Scrollbar */
+/* ── Scrollbar ─────────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--dark); }
 ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+/* ── Nav ───────────────────────────────────────────────────────────────────── */
+.nav-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(14px, 3vw, 40px);
+  flex-wrap: wrap;
+}
+
+/* On very small screens show only RSVP */
+@media (max-width: 480px) {
+  .nav-hide-mobile { display: none; }
+}
+
+/* ── Responsive grids ──────────────────────────────────────────────────────── */
+
+/* 2-column layout: stacks on mobile */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+@media (max-width: 768px) {
+  .grid-2 { grid-template-columns: 1fr; gap: 40px; }
+}
+
+/* 2-column layout centered (wedding day) */
+.grid-2-center {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .grid-2-center { grid-template-columns: 1fr; gap: 48px; }
+}
+
+/* 3-column layout: stacks on mobile, 2 col on tablet */
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+}
+@media (max-width: 900px) {
+  .grid-3 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .grid-3 { grid-template-columns: 1fr; }
+}
+
+/* 2-column small grid (dress code cards, details) */
+.grid-2-small {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 560px) {
+  .grid-2-small { grid-template-columns: 1fr; }
+}
+
+/* ── Contact flex ──────────────────────────────────────────────────────────── */
+.contact-flex {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 80px;
+}
+@media (max-width: 600px) {
+  .contact-flex { flex-direction: column; align-items: center; gap: 40px; }
+  .contact-divider { display: none; }
+}
+
+/* ── Polaroid grid ─────────────────────────────────────────────────────────── */
+.polaroid-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 24px;
+  padding: 0 16px;
+}
+@media (max-width: 480px) {
+  .polaroid-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+}
+
+/* ── Section padding ───────────────────────────────────────────────────────── */
+.section-pad { padding: 96px 24px; }
+@media (max-width: 768px) { .section-pad { padding: 72px 20px; } }
+@media (max-width: 480px) { .section-pad { padding: 56px 16px; } }
+
+.section-pad-lg { padding: 120px 24px; }
+@media (max-width: 768px) { .section-pad-lg { padding: 80px 20px; } }
+@media (max-width: 480px) { .section-pad-lg { padding: 64px 16px; } }

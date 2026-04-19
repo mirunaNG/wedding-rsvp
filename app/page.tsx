@@ -63,17 +63,22 @@ export default function Home() {
       <nav style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
         background: "rgba(26,23,20,0.85)", backdropFilter: "blur(10px)",
-        display: "flex", justifyContent: "center", alignItems: "center",
-        gap: "clamp(16px, 3vw, 40px)", padding: "14px 24px",
+        padding: "14px 24px",
       }}>
-        {NAV_ITEMS.map(({ label, href }) => (
-          <a key={label} href={href} style={{
-            color: "var(--gold-light)", fontSize: "0.6rem",
-            letterSpacing: "0.18em", textTransform: "uppercase",
-            textDecoration: "none", opacity: 0.85,
-            fontFamily: "var(--font-lato)",
-          }}>{label}</a>
-        ))}
+        <div className="nav-links">
+          {NAV_ITEMS.map(({ label, href }) => (
+            <a key={label} href={href}
+              className={label !== "RSVP" ? "nav-hide-mobile" : ""}
+              style={{
+                color: label === "RSVP" ? "var(--gold)" : "var(--gold-light)",
+                fontSize: "0.6rem", letterSpacing: "0.18em",
+                textTransform: "uppercase", textDecoration: "none",
+                fontFamily: "var(--font-lato)",
+                border: label === "RSVP" ? "1px solid var(--gold)" : "none",
+                padding: label === "RSVP" ? "6px 16px" : "0",
+              }}>{label}</a>
+          ))}
+        </div>
       </nav>
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
@@ -130,7 +135,7 @@ export default function Home() {
       </section>
 
       {/* ── ALMOST OUR FOREVER ───────────────────────────────────────────── */}
-      <section id="story" style={{ background: "var(--dark)", padding: "96px 24px", textAlign: "center" }}>
+      <section id="story" className="section-pad" style={{ background: "var(--dark)", textAlign: "center" }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <p style={{
             fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase",
@@ -146,13 +151,7 @@ export default function Home() {
         </div>
 
         {/* Polaroid grid */}
-        <div style={{
-          maxWidth: 1100, margin: "80px auto 0",
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))",
-          gap: "24px",
-          padding: "0 16px",
-        }}>
+        <div className="polaroid-grid" style={{ maxWidth: 1100, margin: "80px auto 0" }}>
           {POLAROIDS.map((p, i) => (
             <div key={i} style={{
               background: "#fff",
@@ -170,7 +169,7 @@ export default function Home() {
       </section>
 
       {/* ── OUR STORY ────────────────────────────────────────────────────── */}
-      <section style={{ background: "var(--cream)", padding: "96px 24px" }}>
+      <section className="section-pad" style={{ background: "var(--cream)" }}>
         <div style={{ maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
           <p style={{
             fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase",
@@ -194,12 +193,8 @@ export default function Home() {
       </section>
 
       {/* ── THE WEDDING DAY ──────────────────────────────────────────────── */}
-      <section id="day" style={{ background: "var(--dark)", padding: "96px 24px" }}>
-        <div style={{
-          maxWidth: 900, margin: "0 auto",
-          display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px",
-          alignItems: "center",
-        }}>
+      <section id="day" className="section-pad" style={{ background: "var(--dark)" }}>
+        <div className="grid-2-center" style={{ maxWidth: 900, margin: "0 auto" }}>
           <div>
             <p style={{
               fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase",
@@ -234,7 +229,7 @@ export default function Home() {
       </section>
 
       {/* ── THE PLACE ────────────────────────────────────────────────────── */}
-      <section id="place" style={{ background: "var(--cream)", padding: "96px 24px" }}>
+      <section id="place" className="section-pad" style={{ background: "var(--cream)" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 64 }}>
             <p style={{
@@ -248,7 +243,7 @@ export default function Home() {
             }}>Hotel Monumento San Francisco</h2>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start" }}>
+          <div className="grid-2" style={{ gap: 64 }}>
             <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
               <div style={{ position: "relative", height: 320, background: "var(--cream-2)" }}>
                 <Image src="/photos/hotel.jpg" alt="Hotel Monumento" fill style={{ objectFit: "cover" }} />
@@ -292,7 +287,7 @@ export default function Home() {
       </section>
 
       {/* ── WHERE TO STAY ────────────────────────────────────────────────── */}
-      <section style={{ background: "var(--dark-2)", padding: "96px 24px" }}>
+      <section className="section-pad" style={{ background: "var(--dark-2)" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 48 }}>
             <p style={{
@@ -308,7 +303,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 24 }}>
+          <div className="grid-3">
             {/* Option 1 */}
             <div style={{ padding: 36, border: "1px solid rgba(201,169,110,0.25)" }}>
               <p style={{ fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)", fontFamily: "var(--font-lato)", marginBottom: 12 }}>An Alternative</p>
@@ -351,7 +346,7 @@ export default function Home() {
       </section>
 
       {/* ── DRESS CODE ───────────────────────────────────────────────────── */}
-      <section id="dress" style={{ background: "var(--cream)", padding: "96px 24px", textAlign: "center" }}>
+      <section id="dress" className="section-pad" style={{ background: "var(--cream)", textAlign: "center" }}>
         <div style={{ maxWidth: 680, margin: "0 auto" }}>
           <p style={{ fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 12, fontFamily: "var(--font-lato)" }}>Dress Code</p>
           <h2 style={{
@@ -365,7 +360,7 @@ export default function Home() {
             We would love everyone to feel their most beautiful and elegant, and to make this a night to remember.
           </p>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 40, maxWidth: 480, marginLeft: "auto", marginRight: "auto" }}>
+          <div className="grid-2-small" style={{ marginBottom: 40, maxWidth: 480, marginLeft: "auto", marginRight: "auto" }}>
             {[
               { label: "Women", desc: "Floor-length dresses in dark hues" },
               { label: "Men",   desc: "Suits with tie or bow tie and formal shoes" },
@@ -392,14 +387,14 @@ export default function Home() {
       </section>
 
       {/* ── OTHER DETAILS ────────────────────────────────────────────────── */}
-      <section id="details" style={{ background: "var(--cream-2)", padding: "96px 24px" }}>
+      <section id="details" className="section-pad" style={{ background: "var(--cream-2)" }}>
         <div style={{ maxWidth: 960, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 64 }}>
             <p style={{ fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 12, fontFamily: "var(--font-lato)" }}>Other Details</p>
             <div style={{ width: 60, height: 1, background: "var(--gold)", margin: "0 auto" }} />
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "48px 80px" }}>
+          <div className="grid-2" style={{ gap: "48px 80px" }}>
             {[
               {
                 title: "Emergency Contact",
@@ -488,9 +483,9 @@ export default function Home() {
       </section>
 
       {/* ── DISCOVER GALICIA ─────────────────────────────────────────────── */}
-      <section style={{
+      <section className="section-pad-lg" style={{
         position: "relative", background: "var(--dark)",
-        padding: "120px 24px", textAlign: "center", overflow: "hidden",
+        textAlign: "center", overflow: "hidden",
       }}>
         <div style={{ position: "absolute", inset: 0 }}>
           <Image src="/photos/galicia.jpg" alt="Galicia" fill style={{ objectFit: "cover", opacity: 0.28 }} />
@@ -512,8 +507,8 @@ export default function Home() {
       </section>
 
       {/* ── RSVP ─────────────────────────────────────────────────────────── */}
-      <section id="rsvp" style={{
-        background: "var(--dark)", padding: "120px 24px", textAlign: "center",
+      <section id="rsvp" className="section-pad-lg" style={{
+        background: "var(--dark)", textAlign: "center",
         borderTop: "1px solid rgba(201,169,110,0.15)",
       }}>
         <div style={{ maxWidth: 560, margin: "0 auto" }}>
@@ -539,8 +534,8 @@ export default function Home() {
       </section>
 
       {/* ── CONTACT US ───────────────────────────────────────────────────── */}
-      <section style={{
-        background: "var(--dark)", padding: "96px 24px", textAlign: "center",
+      <section className="section-pad" style={{
+        background: "var(--dark)", textAlign: "center",
         borderTop: "1px solid rgba(201,169,110,0.1)",
       }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
@@ -565,13 +560,13 @@ export default function Home() {
 
           <p style={{ fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 40, fontFamily: "var(--font-lato)" }}>Contact Us</p>
 
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "flex-start", gap: 80 }}>
+          <div className="contact-flex">
             <div>
               <p style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.8rem", color: "var(--text-cream)", marginBottom: 4 }}>Ioana</p>
               <a href="tel:+34690155108" style={{ display: "block", fontSize: "0.8rem", color: "var(--gold)", textDecoration: "none", fontFamily: "var(--font-lato)" }}>+34 690 155 108</a>
               <a href="mailto:giurcomez@gmail.com" style={{ display: "block", fontSize: "0.75rem", color: "var(--text-cream)", opacity: 0.45, textDecoration: "none", marginTop: 4, fontFamily: "var(--font-lato)" }}>giurcomez@gmail.com</a>
             </div>
-            <div style={{ width: 1, alignSelf: "stretch", background: "rgba(201,169,110,0.2)" }} />
+            <div className="contact-divider" style={{ width: 1, alignSelf: "stretch", background: "rgba(201,169,110,0.2)" }} />
             <div>
               <p style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.8rem", color: "var(--text-cream)", marginBottom: 4 }}>Fran</p>
               <a href="tel:+34697819765" style={{ display: "block", fontSize: "0.8rem", color: "var(--gold)", textDecoration: "none", fontFamily: "var(--font-lato)" }}>+34 697 819 765</a>
