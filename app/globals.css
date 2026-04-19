@@ -1,26 +1,91 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --dark: #1a1714;
+  --dark-2: #231f1b;
+  --cream: #f2ede3;
+  --cream-2: #e8e0d0;
+  --gold: #c9a96e;
+  --gold-light: #d9bf94;
+  --text-dark: #1a1714;
+  --text-cream: #e8dfd0;
+  --text-muted: #8a7d6b;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-cormorant);
+  --font-sans: var(--font-lato);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--cream);
+  color: var(--text-dark);
+  font-family: var(--font-lato), sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.02em;
 }
+
+.font-serif {
+  font-family: var(--font-cormorant), Georgia, serif;
+}
+
+.section-dark {
+  background-color: var(--dark);
+  color: var(--text-cream);
+}
+
+.section-cream {
+  background-color: var(--cream);
+  color: var(--text-dark);
+}
+
+.section-cream-2 {
+  background-color: var(--cream-2);
+  color: var(--text-dark);
+}
+
+.gold-text {
+  color: var(--gold);
+}
+
+.gold-border {
+  border-color: var(--gold);
+}
+
+.divider-gold {
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  margin: 0 auto;
+}
+
+/* Polaroid styles */
+.polaroid {
+  background: #fff;
+  padding: 8px 8px 28px 8px;
+  box-shadow: 2px 4px 12px rgba(0,0,0,0.35);
+}
+
+/* Nav */
+.wedding-nav a {
+  font-family: var(--font-lato), sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--dark); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
