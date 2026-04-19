@@ -76,7 +76,7 @@ export default function Home() {
         overflow: "hidden",
       }}>
         <div style={{ position: "absolute", inset: 0 }}>
-          <Image src="/photos/hero.jpg" alt="Ioana & Fran" fill
+          <Image src="/photos/hero.png" alt="Ioana & Fran" fill
             style={{ objectFit: "cover", opacity: 0.45 }} priority />
           <div style={{
             position: "absolute", inset: 0,
