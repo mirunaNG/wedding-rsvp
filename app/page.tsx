@@ -11,19 +11,43 @@ import Countdown from "./components/Countdown";
 //   p1.jpg–p15.jpg – polaroid-style couple photos
 // ─────────────────────────────────────────────────────────────────────────────
 
-const POLAROIDS = [
-  { src: "/photos/p1.jpg",  rotate: -6 },
-  { src: "/photos/p2.jpg",  rotate:  4 },
-  { src: "/photos/p3.jpg",  rotate: -3 },
-  { src: "/photos/p4.jpg",  rotate:  7 },
-  { src: "/photos/p5.jpg",  rotate: -5 },
-  { src: "/photos/p6.jpg",  rotate:  3 },
-  { src: "/photos/p7.jpg",  rotate: -8 },
-  { src: "/photos/p8.jpg",  rotate:  5 },
-  { src: "/photos/p9.jpg",  rotate: -4 },
-  { src: "/photos/p10.jpg", rotate:  6 },
-  { src: "/photos/p11.jpg", rotate: -2 },
-  { src: "/photos/p12.jpg", rotate:  8 },
+// 27 polaroids: each has src, rotation, and absolute position (% of container)
+// Container is 1080px wide × 720px tall on desktop
+const POLAROIDS: { src: string; rotate: number; top: string; left: string }[] = [
+  // Row 1 — 6 photos, centradas
+  { src: "/photos/p1.jpg",  rotate: -8,  top:  "0%",  left: "13%" },
+  { src: "/photos/p2.jpg",  rotate: 12,  top:  "2%",  left: "25%" },
+  { src: "/photos/p3.jpg",  rotate: -5,  top:  "0%",  left: "37%" },
+  { src: "/photos/p4.jpg",  rotate:  9,  top:  "3%",  left: "49%" },
+  { src: "/photos/p5.jpg",  rotate: -11, top:  "1%",  left: "61%" },
+  { src: "/photos/p6.jpg",  rotate:  6,  top:  "2%",  left: "73%" },
+
+  // Row 2 — 8 photos, ancho completo
+  { src: "/photos/p7.jpg",  rotate: -14, top: "21%",  left:  "1%" },
+  { src: "/photos/p8.jpg",  rotate:  8,  top: "19%",  left: "13%" },
+  { src: "/photos/p9.jpg",  rotate: 10,  top: "22%",  left: "25%" },
+  { src: "/photos/p10.jpg", rotate: -7,  top: "19%",  left: "37%" },
+  { src: "/photos/p11.jpg", rotate:  4,  top: "22%",  left: "49%" },
+  { src: "/photos/p12.jpg", rotate: -11, top: "20%",  left: "61%" },
+  { src: "/photos/p13.jpg", rotate:  9,  top: "22%",  left: "73%" },
+  { src: "/photos/p14.jpg", rotate: -3,  top: "20%",  left: "84%" },
+
+  // Row 3 — 8 photos, ancho completo
+  { src: "/photos/p15.jpg", rotate: 13,  top: "43%",  left:  "1%" },
+  { src: "/photos/p16.jpg", rotate: -8,  top: "41%",  left: "13%" },
+  { src: "/photos/p17.jpg", rotate:  6,  top: "44%",  left: "25%" },
+  { src: "/photos/p18.jpg", rotate: -9,  top: "42%",  left: "37%" },
+  { src: "/photos/p19.jpg", rotate: 11,  top: "44%",  left: "49%" },
+  { src: "/photos/p20.jpg", rotate: -5,  top: "42%",  left: "61%" },
+  { src: "/photos/p21.jpg", rotate:  7,  top: "44%",  left: "73%" },
+  { src: "/photos/p22.jpg", rotate: -12, top: "41%",  left: "84%" },
+
+  // Row 4 — 5 photos, centradas (forma ovalada)
+  { src: "/photos/p23.jpg", rotate:  4,  top: "64%",  left: "19%" },
+  { src: "/photos/p24.jpg", rotate: -7,  top: "62%",  left: "31%" },
+  { src: "/photos/p25.jpg", rotate:  9,  top: "65%",  left: "43%" },
+  { src: "/photos/p26.jpg", rotate: -6,  top: "63%",  left: "55%" },
+  { src: "/photos/p27.jpg", rotate: 11,  top: "64%",  left: "67%" },
 ];
 
 const TIMELINE = [
@@ -135,8 +159,16 @@ export default function Home() {
       </section>
 
       {/* ── ALMOST OUR FOREVER ───────────────────────────────────────────── */}
-      <section id="story" className="section-pad" style={{ background: "var(--dark)", textAlign: "center" }}>
-        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+      <section id="story" style={{
+        position: "relative", background: "var(--dark)",
+        padding: "120px 24px", textAlign: "center", overflow: "hidden",
+      }}>
+        {/* Background image for countdown */}
+        <div style={{ position: "absolute", inset: 0 }}>
+          <Image src="/photos/hero.jpg" alt="" fill style={{ objectFit: "cover", opacity: 0.2 }} />
+          <div style={{ position: "absolute", inset: 0, background: "rgba(26,23,20,0.6)" }} />
+        </div>
+        <div style={{ position: "relative", zIndex: 1, maxWidth: 900, margin: "0 auto" }}>
           <p style={{
             fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase",
             color: "var(--gold)", marginBottom: "12px", fontFamily: "var(--font-lato)",
@@ -145,26 +177,9 @@ export default function Home() {
             fontFamily: "var(--font-cormorant), Georgia, serif",
             fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 300,
             fontStyle: "italic", color: "var(--text-cream)",
-            marginBottom: "56px",
+            marginBottom: "64px",
           }}>The Countdown</h2>
           <Countdown />
-        </div>
-
-        {/* Polaroid grid */}
-        <div className="polaroid-grid" style={{ maxWidth: 1100, margin: "80px auto 0" }}>
-          {POLAROIDS.map((p, i) => (
-            <div key={i} style={{
-              background: "#fff",
-              padding: "8px 8px 28px",
-              boxShadow: "2px 4px 16px rgba(0,0,0,0.5)",
-              transform: `rotate(${p.rotate}deg)`,
-              transition: "transform 0.2s",
-            }}>
-              <div style={{ position: "relative", width: "100%", aspectRatio: "1", background: "#2a2520" }}>
-                <Image src={p.src} alt={`Foto ${i + 1}`} fill style={{ objectFit: "cover" }} />
-              </div>
-            </div>
-          ))}
         </div>
       </section>
 
@@ -188,6 +203,23 @@ export default function Home() {
               fontSize: "1.2rem", lineHeight: 1.8,
               color: "var(--text-dark)", marginBottom: "24px",
             }}>{para}</p>
+          ))}
+        </div>
+      </section>
+
+      {/* ── PHOTO COLLAGE ────────────────────────────────────────────────── */}
+      <section style={{ background: "var(--dark)", padding: "80px 24px 100px" }}>
+        <div className="scattered-wrap">
+          {POLAROIDS.map((p, i) => (
+            <div
+              key={i}
+              className="scattered-photo"
+              style={{ top: p.top, left: p.left, transform: `rotate(${p.rotate}deg)`, zIndex: i }}
+            >
+              <div style={{ position: "relative", width: "100%", aspectRatio: "1", background: "#2a2520" }}>
+                <Image src={p.src} alt={`Foto ${i + 1}`} fill style={{ objectFit: "cover" }} />
+              </div>
+            </div>
           ))}
         </div>
       </section>
