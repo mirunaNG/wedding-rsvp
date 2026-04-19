@@ -1,33 +1,29 @@
 import Image from "next/image";
 import Countdown from "./components/Countdown";
 
-// ─── Photo paths ─────────────────────────────────────────────────────────────
-// Put your photos in /public/photos/ with these filenames:
-//   hero.jpg       – couple photo for the hero section (dark/moody, landscape)
-//   contact.jpg    – couple photo for the Contact Us section
+// ─── Photos ──────────────────────────────────────────────────────────────────
+// Upload your photos to /public/photos/ with these filenames:
+//   hero.jpg       – hero background (landscape, couple)
+//   contact.jpg    – couple photo for Contact Us
 //   hotel.jpg      – Hotel Monumento San Francisco exterior
 //   santiago.jpg   – Santiago de Compostela cityscape
-//   galicia.jpg    – Galicia landscape for the Discover Galicia section
-//   flowers.jpg    – Floral photo for the Wedding Album section
-//   p1.jpg–p15.jpg – Polaroid-style couple photos for the collage
+//   galicia.jpg    – Galicia landscape
+//   p1.jpg–p15.jpg – polaroid-style couple photos
 // ─────────────────────────────────────────────────────────────────────────────
 
-const POLAROID_PHOTOS = [
-  { src: "/photos/p1.jpg", rotate: -6, top: "5%", left: "2%" },
-  { src: "/photos/p2.jpg", rotate: 4, top: "0%", left: "16%" },
-  { src: "/photos/p3.jpg", rotate: -3, top: "8%", left: "30%" },
-  { src: "/photos/p4.jpg", rotate: 7, top: "2%", left: "44%" },
-  { src: "/photos/p5.jpg", rotate: -5, top: "6%", left: "58%" },
-  { src: "/photos/p6.jpg", rotate: 3, top: "1%", left: "72%" },
-  { src: "/photos/p7.jpg", rotate: -8, top: "7%", left: "85%" },
-  { src: "/photos/p8.jpg", rotate: 5, top: "48%", left: "0%" },
-  { src: "/photos/p9.jpg", rotate: -4, top: "45%", left: "14%" },
-  { src: "/photos/p10.jpg", rotate: 6, top: "50%", left: "28%" },
-  { src: "/photos/p11.jpg", rotate: -2, top: "44%", left: "42%" },
-  { src: "/photos/p12.jpg", rotate: 8, top: "49%", left: "56%" },
-  { src: "/photos/p13.jpg", rotate: -6, top: "46%", left: "70%" },
-  { src: "/photos/p14.jpg", rotate: 4, top: "51%", left: "83%" },
-  { src: "/photos/p15.jpg", rotate: -3, top: "25%", left: "40%" },
+const POLAROIDS = [
+  { src: "/photos/p1.jpg",  rotate: -6 },
+  { src: "/photos/p2.jpg",  rotate:  4 },
+  { src: "/photos/p3.jpg",  rotate: -3 },
+  { src: "/photos/p4.jpg",  rotate:  7 },
+  { src: "/photos/p5.jpg",  rotate: -5 },
+  { src: "/photos/p6.jpg",  rotate:  3 },
+  { src: "/photos/p7.jpg",  rotate: -8 },
+  { src: "/photos/p8.jpg",  rotate:  5 },
+  { src: "/photos/p9.jpg",  rotate: -4 },
+  { src: "/photos/p10.jpg", rotate:  6 },
+  { src: "/photos/p11.jpg", rotate: -2 },
+  { src: "/photos/p12.jpg", rotate:  8 },
 ];
 
 const TIMELINE = [
@@ -43,775 +39,557 @@ const TIMELINE = [
 ];
 
 const DRESS_COLORS = [
-  { hex: "#1a1a2e", label: "Midnight Navy" },
-  { hex: "#1b3a2d", label: "Forest Green" },
-  { hex: "#3d1a1a", label: "Deep Burgundy" },
-  { hex: "#2e2318", label: "Dark Chocolate" },
-  { hex: "#111111", label: "Black" },
+  "#1a1a2e",
+  "#1b3a2d",
+  "#3d1a1a",
+  "#2e2318",
+  "#111111",
+];
+
+const NAV_ITEMS = [
+  { label: "Our Story",  href: "#story" },
+  { label: "The Day",    href: "#day" },
+  { label: "The Place",  href: "#place" },
+  { label: "Dress Code", href: "#dress" },
+  { label: "Details",    href: "#details" },
+  { label: "RSVP",       href: "#rsvp" },
 ];
 
 export default function Home() {
   return (
-    <main>
-      {/* ── NAV ─────────────────────────────────────────────────────────── */}
-      <nav
-        className="wedding-nav fixed top-0 left-0 right-0 z-50 flex justify-center gap-6 md:gap-10 py-4 px-6"
-        style={{ background: "rgba(26,23,20,0.7)", backdropFilter: "blur(8px)" }}
-      >
-        {["Our Story", "The Day", "The Place", "Dress Code", "Details", "RSVP"].map((item) => (
-          <a
-            key={item}
-            href={`#${item.toLowerCase().replace(/ /g, "-")}`}
-            style={{ color: "var(--gold-light)" }}
-            className="hover:opacity-70 hidden md:block"
-          >
-            {item}
-          </a>
+    <main style={{ fontFamily: "var(--font-lato), sans-serif" }}>
+
+      {/* ── NAV ──────────────────────────────────────────────────────────── */}
+      <nav style={{
+        position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
+        background: "rgba(26,23,20,0.85)", backdropFilter: "blur(10px)",
+        display: "flex", justifyContent: "center", alignItems: "center",
+        gap: "clamp(16px, 3vw, 40px)", padding: "14px 24px",
+      }}>
+        {NAV_ITEMS.map(({ label, href }) => (
+          <a key={label} href={href} style={{
+            color: "var(--gold-light)", fontSize: "0.6rem",
+            letterSpacing: "0.18em", textTransform: "uppercase",
+            textDecoration: "none", opacity: 0.85,
+            fontFamily: "var(--font-lato)",
+          }}>{label}</a>
         ))}
-        <a
-          href="#rsvp"
-          style={{ color: "var(--gold)", border: "1px solid var(--gold)" }}
-          className="px-4 py-1 text-xs tracking-widest uppercase hover:opacity-70 md:hidden"
-        >
-          RSVP
-        </a>
       </nav>
 
-      {/* ── HERO ────────────────────────────────────────────────────────── */}
-      <section
-        className="relative flex flex-col items-center justify-center text-center min-h-screen"
-        style={{ background: "var(--dark)" }}
-      >
-        {/* Background photo – replace with your hero.jpg */}
-        <div className="absolute inset-0 overflow-hidden">
-          <Image
-            src="/photos/hero.jpg"
-            alt="Ioana & Fran"
-            fill
-            className="object-cover opacity-50"
-            priority
-          />
-          <div
-            className="absolute inset-0"
-            style={{ background: "linear-gradient(to bottom, rgba(26,23,20,0.3) 0%, rgba(26,23,20,0.6) 60%, rgba(26,23,20,1) 100%)" }}
-          />
+      {/* ── HERO ─────────────────────────────────────────────────────────── */}
+      <section style={{
+        position: "relative", minHeight: "100vh",
+        display: "flex", flexDirection: "column",
+        alignItems: "center", justifyContent: "center",
+        textAlign: "center", background: "var(--dark)",
+        overflow: "hidden",
+      }}>
+        <div style={{ position: "absolute", inset: 0 }}>
+          <Image src="/photos/hero.jpg" alt="Ioana & Fran" fill
+            style={{ objectFit: "cover", opacity: 0.45 }} priority />
+          <div style={{
+            position: "absolute", inset: 0,
+            background: "linear-gradient(to bottom, rgba(26,23,20,0.2) 0%, rgba(26,23,20,0.55) 50%, rgba(26,23,20,1) 100%)",
+          }} />
         </div>
 
-        <div className="relative z-10 px-6">
-          <p
-            className="text-xs tracking-[0.3em] uppercase mb-6"
-            style={{ color: "var(--gold)", fontFamily: "var(--font-lato)" }}
-          >
-            September 12th, 2026
-          </p>
-          <h1
-            className="font-serif font-light"
-            style={{ fontSize: "clamp(4rem, 12vw, 10rem)", lineHeight: 0.9, color: "var(--text-cream)" }}
-          >
-            Ioana
-            <br />
-            <span style={{ color: "var(--gold-light)" }}>&amp;</span>
-            <br />
+        <div style={{ position: "relative", zIndex: 1, padding: "0 24px" }}>
+          <p style={{
+            fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase",
+            color: "var(--gold)", marginBottom: "28px",
+            fontFamily: "var(--font-lato)",
+          }}>September 12th, 2026</p>
+
+          <h1 style={{
+            fontFamily: "var(--font-cormorant), Georgia, serif",
+            fontSize: "clamp(5rem, 14vw, 11rem)",
+            fontWeight: 300, lineHeight: 0.88,
+            color: "var(--text-cream)", margin: 0,
+          }}>
+            Ioana<br />
+            <span style={{ color: "var(--gold-light)" }}>&amp;</span><br />
             Fran
           </h1>
-          <div className="divider-gold my-8" />
-          <p
-            className="text-xs tracking-[0.2em] uppercase"
-            style={{ color: "var(--text-cream)", opacity: 0.7, fontFamily: "var(--font-lato)" }}
-          >
-            Are Getting Married at Hotel Monumento San Francisco
-          </p>
-          <a
-            href="#rsvp"
-            className="inline-block mt-10 px-10 py-3 text-xs tracking-[0.2em] uppercase transition-opacity hover:opacity-70"
-            style={{
-              border: "1px solid var(--gold)",
-              color: "var(--gold)",
-              fontFamily: "var(--font-lato)",
-            }}
-          >
-            RSVP Here
-          </a>
-        </div>
 
-        <div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-          style={{ color: "var(--gold)", opacity: 0.5 }}
-        >
-          <span className="text-xs tracking-widest uppercase" style={{ fontFamily: "var(--font-lato)" }}>Scroll</span>
-          <svg width="16" height="24" viewBox="0 0 16 24" fill="none">
-            <path d="M8 0v20M1 13l7 7 7-7" stroke="currentColor" strokeWidth="1" />
-          </svg>
+          <div style={{ width: 60, height: 1, background: "var(--gold)", margin: "32px auto" }} />
+
+          <p style={{
+            fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase",
+            color: "var(--text-cream)", opacity: 0.65,
+            fontFamily: "var(--font-lato)",
+          }}>Are Getting Married at Hotel Monumento San Francisco</p>
+
+          <a href="#rsvp" style={{
+            display: "inline-block", marginTop: "40px",
+            padding: "12px 40px", border: "1px solid var(--gold)",
+            color: "var(--gold)", textDecoration: "none",
+            fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase",
+            fontFamily: "var(--font-lato)",
+          }}>RSVP Here</a>
         </div>
       </section>
 
-      {/* ── ALMOST OUR FOREVER ──────────────────────────────────────────── */}
-      <section
-        id="our-story"
-        className="section-dark py-24 px-6 text-center"
-      >
-        <p
-          className="text-xs tracking-[0.3em] uppercase mb-4"
-          style={{ color: "var(--gold)", fontFamily: "var(--font-lato)" }}
-        >
-          Almost Our Forever
-        </p>
-        <h2
-          className="font-serif font-light italic mb-12"
-          style={{ fontSize: "clamp(2rem, 6vw, 4.5rem)", color: "var(--text-cream)" }}
-        >
-          The Countdown
-        </h2>
-        <Countdown />
+      {/* ── ALMOST OUR FOREVER ───────────────────────────────────────────── */}
+      <section id="story" style={{ background: "var(--dark)", padding: "96px 24px", textAlign: "center" }}>
+        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+          <p style={{
+            fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase",
+            color: "var(--gold)", marginBottom: "12px", fontFamily: "var(--font-lato)",
+          }}>Almost Our Forever</p>
+          <h2 style={{
+            fontFamily: "var(--font-cormorant), Georgia, serif",
+            fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 300,
+            fontStyle: "italic", color: "var(--text-cream)",
+            marginBottom: "56px",
+          }}>The Countdown</h2>
+          <Countdown />
+        </div>
 
-        {/* Polaroid collage */}
-        <div className="relative mt-20 mx-auto" style={{ height: "520px", maxWidth: "1100px" }}>
-          {POLAROID_PHOTOS.map((photo, i) => (
-            <div
-              key={i}
-              className="polaroid absolute"
-              style={{
-                transform: `rotate(${photo.rotate}deg)`,
-                top: photo.top,
-                left: photo.left,
-                width: "130px",
-                zIndex: Math.abs(photo.rotate),
-              }}
-            >
-              <div
-                className="relative bg-gray-800"
-                style={{ width: "114px", height: "114px", overflow: "hidden" }}
-              >
-                <Image
-                  src={photo.src}
-                  alt={`Photo ${i + 1}`}
-                  fill
-                  className="object-cover"
-                />
+        {/* Polaroid grid */}
+        <div style={{
+          maxWidth: 1100, margin: "80px auto 0",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))",
+          gap: "24px",
+          padding: "0 16px",
+        }}>
+          {POLAROIDS.map((p, i) => (
+            <div key={i} style={{
+              background: "#fff",
+              padding: "8px 8px 28px",
+              boxShadow: "2px 4px 16px rgba(0,0,0,0.5)",
+              transform: `rotate(${p.rotate}deg)`,
+              transition: "transform 0.2s",
+            }}>
+              <div style={{ position: "relative", width: "100%", aspectRatio: "1", background: "#2a2520" }}>
+                <Image src={p.src} alt={`Foto ${i + 1}`} fill style={{ objectFit: "cover" }} />
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ── OUR STORY ───────────────────────────────────────────────────── */}
-      <section className="section-cream py-24 px-6 max-w-3xl mx-auto" id="our-story-text">
-        <p
-          className="text-xs tracking-[0.3em] uppercase mb-4 text-center"
-          style={{ color: "var(--gold)", fontFamily: "var(--font-lato)" }}
-        >
-          Our Story
-        </p>
-        <div className="divider-gold mb-10" />
-        <div
-          className="font-serif space-y-6 text-center leading-relaxed"
-          style={{ fontSize: "1.2rem", color: "var(--text-dark)" }}
-        >
-          <p>
-            It was just the beginning of 2018 when the list of exchange architecture students admitted to the
-            University of Iași was published, and we both found ourselves browsing online forums, each in our
-            own way, trying to imagine what the coming year might bring. We had already come across each other
-            without noticing.
-          </p>
-          <p>
-            After the summer, our paths led us both to Romania. Not long after arriving at that rather run-down
-            dormitory (which would soon become home), our rooms — coincidentally right next to each other —
-            were suddenly left without electricity. As we stepped out into the corridor, we met for the first time.
-          </p>
-          <p>
-            From that point on, what began as coincidence slowly turned into friendship. An unforgettable year
-            followed, and when the time came to say goodbye, we did so in tears, convinced we might never see
-            each other again… but that was not to be.
-          </p>
-          <p>
-            During the pandemic, we found our way back to each other. We both felt that too much time had
-            passed without seeing one another, and that trivial virus was not about to stand in our way. So,
-            almost on a whim, we decided to meet in Porto and spend a few days by the sea catching up. As you
-            can imagine, that reunion brought us closer in a way that made us never want to say goodbye again.
-          </p>
-          <p>
-            Since then, and as the beginning of our story had quietly foreshadowed, we&apos;ve never stopped
-            travelling and discovering the world together. So much so that, during our trip to New York last
-            October, we decided to make our story forever.
-          </p>
+      {/* ── OUR STORY ────────────────────────────────────────────────────── */}
+      <section style={{ background: "var(--cream)", padding: "96px 24px" }}>
+        <div style={{ maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
+          <p style={{
+            fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase",
+            color: "var(--gold)", marginBottom: "12px", fontFamily: "var(--font-lato)",
+          }}>Our Story</p>
+          <div style={{ width: 60, height: 1, background: "var(--gold)", margin: "0 auto 48px" }} />
+          {[
+            `It was just the beginning of 2018 when the list of exchange architecture students admitted to the University of Iași was published, and we both found ourselves browsing online forums, each in our own way, trying to imagine what the coming year might bring. We had already come across each other without noticing.`,
+            `After the summer, our paths led us both to Romania. Not long after arriving at that rather run-down dormitory (which would soon become home), our rooms — coincidentally right next to each other — were suddenly left without electricity. As we stepped out into the corridor, we met for the first time.`,
+            `From that point on, what began as coincidence slowly turned into friendship. An unforgettable year followed, and when the time came to say goodbye, we did so in tears, convinced we might never see each other again… but that was not to be.`,
+            `During the pandemic, we found our way back to each other. We both felt that too much time had passed without seeing one another, and that trivial virus was not about to stand in our way. So, almost on a whim, we decided to meet in Porto and spend a few days by the sea catching up. As you can imagine, that reunion brought us closer in a way that made us never want to say goodbye again.`,
+            `Since then, and as the beginning of our story had quietly foreshadowed, we've never stopped travelling and discovering the world together. So much so that, during our trip to New York last October, we decided to make our story forever.`,
+          ].map((para, i) => (
+            <p key={i} style={{
+              fontFamily: "var(--font-cormorant), Georgia, serif",
+              fontSize: "1.2rem", lineHeight: 1.8,
+              color: "var(--text-dark)", marginBottom: "24px",
+            }}>{para}</p>
+          ))}
         </div>
       </section>
 
-      {/* ── THE WEDDING DAY ─────────────────────────────────────────────── */}
-      <section
-        id="the-day"
-        className="section-dark py-24 px-6"
-      >
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+      {/* ── THE WEDDING DAY ──────────────────────────────────────────────── */}
+      <section id="day" style={{ background: "var(--dark)", padding: "96px 24px" }}>
+        <div style={{
+          maxWidth: 900, margin: "0 auto",
+          display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px",
+          alignItems: "center",
+        }}>
           <div>
-            <p
-              className="text-xs tracking-[0.3em] uppercase mb-6"
-              style={{ color: "var(--gold)", fontFamily: "var(--font-lato)" }}
-            >
-              September 12th, 2026
-            </p>
-            <h2
-              className="font-serif font-light"
-              style={{ fontSize: "clamp(3rem, 8vw, 6rem)", lineHeight: 0.95, color: "var(--text-cream)" }}
-            >
-              The
-              <br />
-              Wedding
-              <br />
-              Day
-            </h2>
-            <div className="mt-8" style={{ width: "60px", height: "1px", background: "var(--gold)" }} />
+            <p style={{
+              fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase",
+              color: "var(--gold)", marginBottom: "20px", fontFamily: "var(--font-lato)",
+            }}>September 12th, 2026</p>
+            <h2 style={{
+              fontFamily: "var(--font-cormorant), Georgia, serif",
+              fontSize: "clamp(3rem, 7vw, 5.5rem)", fontWeight: 300,
+              lineHeight: 0.9, color: "var(--text-cream)", margin: 0,
+            }}>The<br />Wedding<br />Day</h2>
+            <div style={{ width: 60, height: 1, background: "var(--gold)", marginTop: 32 }} />
           </div>
           <div>
             {TIMELINE.map(({ time, label }) => (
-              <div
-                key={time}
-                className="flex items-baseline gap-6 py-3"
-                style={{ borderBottom: "1px solid rgba(201,169,110,0.15)" }}
-              >
-                <span
-                  className="font-serif text-lg shrink-0"
-                  style={{ color: "var(--gold)", minWidth: "60px" }}
-                >
-                  {time}
-                </span>
-                <span
-                  className="text-xs tracking-[0.2em] uppercase"
-                  style={{ color: "var(--text-cream)", fontFamily: "var(--font-lato)" }}
-                >
-                  {label}
-                </span>
+              <div key={time} style={{
+                display: "flex", alignItems: "baseline", gap: "24px",
+                padding: "14px 0",
+                borderBottom: "1px solid rgba(201,169,110,0.12)",
+              }}>
+                <span style={{
+                  fontFamily: "var(--font-cormorant), Georgia, serif",
+                  fontSize: "1.1rem", color: "var(--gold)", minWidth: 56,
+                }}>{time}</span>
+                <span style={{
+                  fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase",
+                  color: "var(--text-cream)", fontFamily: "var(--font-lato)",
+                }}>{label}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── THE PLACE ───────────────────────────────────────────────────── */}
-      <section
-        id="the-place"
-        className="section-cream py-24 px-6"
-      >
-        <div className="max-w-6xl mx-auto">
-          <p
-            className="text-xs tracking-[0.3em] uppercase mb-4 text-center"
-            style={{ color: "var(--gold)", fontFamily: "var(--font-lato)" }}
-          >
-            The Place
-          </p>
-          <h2
-            className="font-serif font-light text-center mb-12"
-            style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)", color: "var(--text-dark)" }}
-          >
-            Hotel Monumento San Francisco
-          </h2>
+      {/* ── THE PLACE ────────────────────────────────────────────────────── */}
+      <section id="place" style={{ background: "var(--cream)", padding: "96px 24px" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 64 }}>
+            <p style={{
+              fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase",
+              color: "var(--gold)", marginBottom: 12, fontFamily: "var(--font-lato)",
+            }}>The Place</p>
+            <h2 style={{
+              fontFamily: "var(--font-cormorant), Georgia, serif",
+              fontSize: "clamp(2rem, 5vw, 4rem)", fontWeight: 300,
+              color: "var(--text-dark)", margin: 0,
+            }}>Hotel Monumento San Francisco</h2>
+          </div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            <div className="space-y-6">
-              <div
-                className="relative overflow-hidden"
-                style={{ height: "320px", background: "var(--cream-2)" }}
-              >
-                <Image
-                  src="/photos/hotel.jpg"
-                  alt="Hotel Monumento San Francisco"
-                  fill
-                  className="object-cover"
-                />
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+              <div style={{ position: "relative", height: 320, background: "var(--cream-2)" }}>
+                <Image src="/photos/hotel.jpg" alt="Hotel Monumento" fill style={{ objectFit: "cover" }} />
               </div>
-              <div
-                className="relative overflow-hidden"
-                style={{ height: "220px", background: "var(--cream-2)" }}
-              >
-                <Image
-                  src="/photos/santiago.jpg"
-                  alt="Santiago de Compostela"
-                  fill
-                  className="object-cover"
-                />
+              <div style={{ position: "relative", height: 200, background: "var(--cream-2)" }}>
+                <Image src="/photos/santiago.jpg" alt="Santiago de Compostela" fill style={{ objectFit: "cover" }} />
               </div>
             </div>
-            <div className="space-y-8">
-              <div>
-                <p
-                  className="font-serif text-2xl mb-2"
-                  style={{ color: "var(--text-dark)" }}
-                >
-                  San Francisco Hotel Monumento
-                </p>
-                <p style={{ color: "var(--text-muted)", fontSize: "0.9rem" }}>
-                  Campillo de San Francisco, 3<br />
-                  15705 Santiago de Compostela
-                </p>
-                <a
-                  href="https://www.sanfranciscohm.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs tracking-widest uppercase mt-2 inline-block hover:opacity-70"
-                  style={{ color: "var(--gold)", fontFamily: "var(--font-lato)" }}
-                >
-                  www.sanfranciscohm.com
-                </a>
-              </div>
 
-              <div>
-                <h3
-                  className="font-serif text-xl mb-4"
-                  style={{ color: "var(--text-dark)" }}
-                >
-                  How To Get There
-                </h3>
-                <div className="space-y-4 text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
-                  <p>
-                    <strong style={{ color: "var(--text-dark)" }}>By Plane:</strong> The nearest airport is Santiago de Compostela Airport (SCQ), approximately 15 minutes from the city center. You can also fly into A Coruña Airport (LCG), about a 1-hour drive from the venue.
-                  </p>
-                  <p>
-                    <strong style={{ color: "var(--text-dark)" }}>By Train:</strong> Santiago de Compostela Railway Station offers frequent high-speed and regional connections. The station is around a 10-minute drive or 20-minute walk from the hotel.
-                  </p>
-                  <p>
-                    <strong style={{ color: "var(--text-dark)" }}>By Car:</strong> Santiago is easily accessible by road with good motorway connections. Parking is available near the hotel, although access to the historic center may be limited.
-                  </p>
-                </div>
-              </div>
+            <div>
+              <p style={{
+                fontFamily: "var(--font-cormorant), Georgia, serif",
+                fontSize: "1.5rem", color: "var(--text-dark)", marginBottom: 4,
+              }}>San Francisco Hotel Monumento</p>
+              <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", marginBottom: 4 }}>
+                Campillo de San Francisco, 3 · 15705 Santiago de Compostela
+              </p>
+              <a href="https://www.sanfranciscohm.com" target="_blank" rel="noopener noreferrer"
+                style={{ fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--gold)", textDecoration: "none", fontFamily: "var(--font-lato)" }}>
+                www.sanfranciscohm.com
+              </a>
+
+              <div style={{ width: 40, height: 1, background: "var(--gold)", margin: "32px 0" }} />
+
+              <h3 style={{
+                fontFamily: "var(--font-cormorant), Georgia, serif",
+                fontSize: "1.4rem", color: "var(--text-dark)", marginBottom: 16,
+              }}>How To Get There</h3>
+              {[
+                { title: "By Plane", text: "The nearest airport is Santiago de Compostela Airport (SCQ), approximately 15 minutes from the city center. You can also fly into A Coruña Airport (LCG), about a 1-hour drive from the venue." },
+                { title: "By Train", text: "Santiago de Compostela Railway Station offers frequent high-speed and regional connections. Around a 10-minute drive or 20-minute walk from the hotel." },
+                { title: "By Car", text: "Santiago is easily accessible by road with good motorway connections. Parking is available near the hotel, though access to the historic center may be limited." },
+              ].map(({ title, text }) => (
+                <p key={title} style={{ fontSize: "0.85rem", lineHeight: 1.7, color: "var(--text-muted)", marginBottom: 14 }}>
+                  <strong style={{ color: "var(--text-dark)", fontFamily: "var(--font-lato)" }}>{title}: </strong>{text}
+                </p>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── WHERE TO STAY ───────────────────────────────────────────────── */}
-      <section
-        className="section-dark py-24 px-6"
-      >
-        <div className="max-w-5xl mx-auto">
-          <p
-            className="text-xs tracking-[0.3em] uppercase mb-4 text-center"
-            style={{ color: "var(--gold)", fontFamily: "var(--font-lato)" }}
-          >
-            Where To Stay
-          </p>
-          <p
-            className="text-center text-sm max-w-2xl mx-auto mb-12 leading-relaxed"
-            style={{ color: "var(--text-cream)", opacity: 0.7, fontFamily: "var(--font-lato)" }}
-          >
-            As many of you will be travelling from abroad, we have reserved rooms at the following hotels for your convenience.
-            Please book early — availability in Santiago is limited in September and unbooked rooms will be released two months before the wedding.
-          </p>
+      {/* ── WHERE TO STAY ────────────────────────────────────────────────── */}
+      <section style={{ background: "var(--dark-2)", padding: "96px 24px" }}>
+        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 48 }}>
+            <p style={{
+              fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase",
+              color: "var(--gold)", marginBottom: 12, fontFamily: "var(--font-lato)",
+            }}>Where To Stay</p>
+            <p style={{
+              fontSize: "0.85rem", lineHeight: 1.8, color: "var(--text-cream)", opacity: 0.65,
+              maxWidth: 640, margin: "0 auto", fontFamily: "var(--font-lato)",
+            }}>
+              As many of you will be travelling from abroad, we have reserved rooms at the following hotels.
+              Please book early — unbooked rooms will be released two months before the wedding.
+            </p>
+          </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 24 }}>
             {/* Option 1 */}
-            <div
-              className="p-8 flex flex-col gap-4"
-              style={{ border: "1px solid rgba(201,169,110,0.3)" }}
-            >
-              <p className="text-xs tracking-widest uppercase" style={{ color: "var(--gold)", fontFamily: "var(--font-lato)" }}>
-                An Alternative
-              </p>
-              <h3 className="font-serif text-2xl" style={{ color: "var(--text-cream)" }}>
-                Hotel Capital de Galicia
-              </h3>
-              <ul className="text-sm space-y-2" style={{ color: "var(--text-cream)", opacity: 0.7, fontFamily: "var(--font-lato)" }}>
-                <li>More affordable — 95€ per double room / night</li>
+            <div style={{ padding: 36, border: "1px solid rgba(201,169,110,0.25)" }}>
+              <p style={{ fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)", fontFamily: "var(--font-lato)", marginBottom: 12 }}>An Alternative</p>
+              <h3 style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.4rem", color: "var(--text-cream)", marginBottom: 20 }}>Hotel Capital de Galicia</h3>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "0.8rem", lineHeight: 2, color: "var(--text-cream)", opacity: 0.65, fontFamily: "var(--font-lato)" }}>
+                <li>95€ per double room / night</li>
                 <li>Close to the venue</li>
-                <li>Free Parking</li>
-                <li>Buffet Breakfast — 9€ extra per night</li>
+                <li>Free parking</li>
+                <li>Buffet breakfast — 9€ extra</li>
               </ul>
             </div>
 
-            {/* Option 2 — recommended */}
-            <div
-              className="p-8 flex flex-col gap-4 relative"
-              style={{ background: "rgba(201,169,110,0.08)", border: "1px solid var(--gold)" }}
-            >
-              <p className="text-xs tracking-widest uppercase" style={{ color: "var(--gold)", fontFamily: "var(--font-lato)" }}>
-                Our Recommendation
-              </p>
-              <h3 className="font-serif text-2xl" style={{ color: "var(--text-cream)" }}>
-                San Francisco Hotel Monumento
-              </h3>
-              <ul className="text-sm space-y-2" style={{ color: "var(--text-cream)", opacity: 0.7, fontFamily: "var(--font-lato)" }}>
+            {/* Recommended */}
+            <div style={{ padding: 36, border: "1px solid var(--gold)", background: "rgba(201,169,110,0.06)" }}>
+              <p style={{ fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)", fontFamily: "var(--font-lato)", marginBottom: 12 }}>Our Recommendation</p>
+              <h3 style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.4rem", color: "var(--text-cream)", marginBottom: 20 }}>San Francisco Hotel Monumento</h3>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "0.8rem", lineHeight: 2, color: "var(--text-cream)", opacity: 0.65, fontFamily: "var(--font-lato)" }}>
                 <li>Stay at the venue</li>
-                <li>Reduced price — 145€ per double room / night</li>
-                <li>Buffet Breakfast — 22€ per guest / day</li>
+                <li>145€ per double room / night</li>
+                <li>Breakfast — 22€ per guest / day</li>
               </ul>
-              <a
-                href="https://www.sanfranciscohm.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-auto text-xs tracking-widest uppercase hover:opacity-70 transition-opacity"
-                style={{ color: "var(--gold)", fontFamily: "var(--font-lato)" }}
-              >
+              <a href="https://www.sanfranciscohm.com" target="_blank" rel="noopener noreferrer"
+                style={{ display: "inline-block", marginTop: 24, fontSize: "0.6rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--gold)", textDecoration: "none", fontFamily: "var(--font-lato)" }}>
                 Book Now →
               </a>
             </div>
 
-            {/* Option 3 */}
-            <div
-              className="p-8 flex flex-col gap-4"
-              style={{ border: "1px solid rgba(201,169,110,0.3)" }}
-            >
-              <p className="text-xs tracking-widest uppercase" style={{ color: "var(--gold)", fontFamily: "var(--font-lato)" }}>
-                Explore Other Options
-              </p>
-              <h3 className="font-serif text-2xl" style={{ color: "var(--text-cream)" }}>
-                Online Platforms
-              </h3>
-              <ul className="text-sm space-y-3 mt-2" style={{ fontFamily: "var(--font-lato)" }}>
-                {["Booking.com", "Airbnb", "Expedia"].map((site) => (
-                  <li key={site}>
-                    <span style={{ color: "var(--text-cream)", opacity: 0.7 }}>{site}</span>
-                  </li>
-                ))}
+            {/* Other */}
+            <div style={{ padding: 36, border: "1px solid rgba(201,169,110,0.25)" }}>
+              <p style={{ fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)", fontFamily: "var(--font-lato)", marginBottom: 12 }}>Explore Other Options</p>
+              <h3 style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.4rem", color: "var(--text-cream)", marginBottom: 20 }}>Online Platforms</h3>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "0.8rem", lineHeight: 2.2, color: "var(--text-cream)", opacity: 0.65, fontFamily: "var(--font-lato)" }}>
+                <li>Booking.com</li>
+                <li>Airbnb</li>
+                <li>Expedia</li>
               </ul>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── DRESS CODE ──────────────────────────────────────────────────── */}
-      <section
-        id="dress-code"
-        className="section-cream py-24 px-6 text-center"
-      >
-        <div className="max-w-2xl mx-auto">
-          <p
-            className="text-xs tracking-[0.3em] uppercase mb-4"
-            style={{ color: "var(--gold)", fontFamily: "var(--font-lato)" }}
-          >
-            Dress Code
-          </p>
-          <h2
-            className="font-serif font-light mb-3"
-            style={{ fontSize: "clamp(2.5rem, 7vw, 5rem)", color: "var(--text-dark)" }}
-          >
-            Black Tie Inspired
-          </h2>
-          <div className="divider-gold mb-10" />
-          <p className="text-sm leading-relaxed mb-8" style={{ color: "var(--text-muted)", fontFamily: "var(--font-lato)" }}>
+      {/* ── DRESS CODE ───────────────────────────────────────────────────── */}
+      <section id="dress" style={{ background: "var(--cream)", padding: "96px 24px", textAlign: "center" }}>
+        <div style={{ maxWidth: 680, margin: "0 auto" }}>
+          <p style={{ fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 12, fontFamily: "var(--font-lato)" }}>Dress Code</p>
+          <h2 style={{
+            fontFamily: "var(--font-cormorant), Georgia, serif",
+            fontSize: "clamp(2.5rem, 7vw, 5rem)", fontWeight: 300,
+            color: "var(--text-dark)", margin: "0 0 12px",
+          }}>Black Tie Inspired</h2>
+          <div style={{ width: 60, height: 1, background: "var(--gold)", margin: "0 auto 40px" }} />
+
+          <p style={{ fontSize: "0.85rem", lineHeight: 1.8, color: "var(--text-muted)", marginBottom: 40, fontFamily: "var(--font-lato)" }}>
             We would love everyone to feel their most beautiful and elegant, and to make this a night to remember.
           </p>
-          <div className="grid grid-cols-2 gap-4 text-left mb-10 max-w-md mx-auto">
-            <div
-              className="p-4"
-              style={{ background: "var(--cream-2)" }}
-            >
-              <p className="text-xs tracking-widest uppercase mb-2" style={{ color: "var(--gold)", fontFamily: "var(--font-lato)" }}>Women</p>
-              <p className="text-sm" style={{ color: "var(--text-dark)", fontFamily: "var(--font-lato)" }}>
-                Floor-length dresses in dark hues
-              </p>
-            </div>
-            <div
-              className="p-4"
-              style={{ background: "var(--cream-2)" }}
-            >
-              <p className="text-xs tracking-widest uppercase mb-2" style={{ color: "var(--gold)", fontFamily: "var(--font-lato)" }}>Men</p>
-              <p className="text-sm" style={{ color: "var(--text-dark)", fontFamily: "var(--font-lato)" }}>
-                Suits with tie or bow tie and formal shoes
-              </p>
-            </div>
-          </div>
-          <div className="flex justify-center gap-4 mb-8">
-            {DRESS_COLORS.map(({ hex, label }) => (
-              <div key={hex} className="flex flex-col items-center gap-2">
-                <div
-                  className="rounded-full"
-                  style={{ width: "36px", height: "36px", background: hex, boxShadow: "0 2px 8px rgba(0,0,0,0.2)" }}
-                  title={label}
-                />
+
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 40, maxWidth: 480, marginLeft: "auto", marginRight: "auto" }}>
+            {[
+              { label: "Women", desc: "Floor-length dresses in dark hues" },
+              { label: "Men",   desc: "Suits with tie or bow tie and formal shoes" },
+            ].map(({ label, desc }) => (
+              <div key={label} style={{ padding: 24, background: "var(--cream-2)", textAlign: "left" }}>
+                <p style={{ fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 8, fontFamily: "var(--font-lato)" }}>{label}</p>
+                <p style={{ fontSize: "0.85rem", color: "var(--text-dark)", lineHeight: 1.5, fontFamily: "var(--font-lato)" }}>{desc}</p>
               </div>
             ))}
           </div>
-          <p className="text-xs tracking-wide" style={{ color: "var(--text-muted)", fontFamily: "var(--font-lato)" }}>
+
+          <div style={{ display: "flex", justifyContent: "center", gap: 16, marginBottom: 24 }}>
+            {DRESS_COLORS.map((hex) => (
+              <div key={hex} style={{
+                width: 34, height: 34, borderRadius: "50%",
+                background: hex, boxShadow: "0 2px 8px rgba(0,0,0,0.25)",
+              }} />
+            ))}
+          </div>
+          <p style={{ fontSize: "0.75rem", color: "var(--text-muted)", fontFamily: "var(--font-lato)", letterSpacing: "0.05em" }}>
             Please avoid casual wear, trainers, pastel shades, bright colours and prints.
           </p>
         </div>
       </section>
 
-      {/* ── OTHER DETAILS ───────────────────────────────────────────────── */}
-      <section
-        id="details"
-        className="section-cream-2 py-24 px-6"
-      >
-        <div className="max-w-4xl mx-auto">
-          <p
-            className="text-xs tracking-[0.3em] uppercase mb-4 text-center"
-            style={{ color: "var(--gold)", fontFamily: "var(--font-lato)" }}
-          >
-            Other Details
-          </p>
-          <div className="divider-gold mb-16" />
+      {/* ── OTHER DETAILS ────────────────────────────────────────────────── */}
+      <section id="details" style={{ background: "var(--cream-2)", padding: "96px 24px" }}>
+        <div style={{ maxWidth: 960, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 64 }}>
+            <p style={{ fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 12, fontFamily: "var(--font-lato)" }}>Other Details</p>
+            <div style={{ width: 60, height: 1, background: "var(--gold)", margin: "0 auto" }} />
+          </div>
 
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* Emergency Contact */}
-            <div>
-              <h3 className="font-serif text-2xl mb-4" style={{ color: "var(--text-dark)" }}>
-                Emergency Contact
-              </h3>
-              <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontFamily: "var(--font-lato)" }}>
-                As the wedding approaches, the day before and the wedding day itself will be full of excitement.
-                If you need anything at all, please don&apos;t hesitate to reach out to two very special people to us:
-              </p>
-              <div className="space-y-3">
-                <div>
-                  <p className="text-xs tracking-widest uppercase" style={{ color: "var(--gold)", fontFamily: "var(--font-lato)" }}>Miruna, sister of the bride</p>
-                  <p className="font-serif text-lg" style={{ color: "var(--text-dark)" }}>+34 695 986 7 35</p>
-                </div>
-                <div>
-                  <p className="text-xs tracking-widest uppercase" style={{ color: "var(--gold)", fontFamily: "var(--font-lato)" }}>Isabel, sister of the groom</p>
-                  <p className="font-serif text-lg" style={{ color: "var(--text-dark)" }}>+34 667 80 68 48</p>
-                </div>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "48px 80px" }}>
+            {[
+              {
+                title: "Emergency Contact",
+                content: (
+                  <>
+                    <p style={{ fontSize: "0.85rem", lineHeight: 1.8, color: "var(--text-muted)", marginBottom: 20, fontFamily: "var(--font-lato)" }}>
+                      The day before and the wedding day will be full of excitement. If you need anything at all, please reach out to:
+                    </p>
+                    <div style={{ marginBottom: 12 }}>
+                      <p style={{ fontSize: "0.6rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--gold)", fontFamily: "var(--font-lato)" }}>Miruna, sister of the bride</p>
+                      <p style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.2rem", color: "var(--text-dark)" }}>+34 695 986 7 35</p>
+                    </div>
+                    <div>
+                      <p style={{ fontSize: "0.6rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--gold)", fontFamily: "var(--font-lato)" }}>Isabel, sister of the groom</p>
+                      <p style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.2rem", color: "var(--text-dark)" }}>+34 667 80 68 48</p>
+                    </div>
+                  </>
+                ),
+              },
+              {
+                title: "This One's On Us",
+                content: (
+                  <>
+                    <p style={{ fontSize: "0.85rem", lineHeight: 1.8, color: "var(--text-muted)", marginBottom: 12, fontFamily: "var(--font-lato)" }}>
+                      Once you arrive, everything is included — cocktail, dinner, and a five-hour open bar. No surprises, just the celebration.
+                    </p>
+                    <p style={{ fontSize: "0.85rem", lineHeight: 1.8, color: "var(--text-muted)", fontFamily: "var(--font-lato)" }}>
+                      The only things not included are accommodation and transportation. Just arrive ready to celebrate — we'll take care of the rest!
+                    </p>
+                  </>
+                ),
+              },
+              {
+                title: "Children",
+                content: (
+                  <p style={{ fontSize: "0.85rem", lineHeight: 1.8, color: "var(--text-muted)", fontFamily: "var(--font-lato)" }}>
+                    We adore your little ones, but we're imagining an adults-only evening so everyone can fully relax. We'd love for you to treat this as a rare night off parenting duties! If there is truly no other option, please let us know in advance.
+                  </p>
+                ),
+              },
+              {
+                title: "Plus-Ones",
+                content: (
+                  <p style={{ fontSize: "0.85rem", lineHeight: 1.8, color: "var(--text-muted)", fontFamily: "var(--font-lato)" }}>
+                    If your invitation includes a guest's name, they're invited. Otherwise, we're keeping the celebration intimate and are unable to accommodate additional guests.
+                  </p>
+                ),
+              },
+              {
+                title: "An Unplugged Ceremony",
+                content: (
+                  <p style={{ fontSize: "0.85rem", lineHeight: 1.8, color: "var(--text-muted)", fontFamily: "var(--font-lato)" }}>
+                    We kindly ask that the ceremony is <strong style={{ color: "var(--text-dark)" }}>phone free</strong>. We want that moment seen with your eyes, not through screens. Once we move beyond the ceremony, please feel free to capture everything!
+                  </p>
+                ),
+              },
+              {
+                title: "Wedding Album",
+                content: (
+                  <>
+                    <p style={{ fontSize: "0.85rem", lineHeight: 1.8, color: "var(--text-muted)", marginBottom: 24, fontFamily: "var(--font-lato)" }}>
+                      We'll share a joint photo album where you can upload anything you capture. We'd love to see the day through your eyes too!
+                    </p>
+                    <a href="#" style={{
+                      display: "inline-block", padding: "10px 28px",
+                      background: "var(--dark)", color: "var(--gold)",
+                      textDecoration: "none", fontSize: "0.6rem",
+                      letterSpacing: "0.15em", textTransform: "uppercase",
+                      fontFamily: "var(--font-lato)",
+                    }}>Shared Album →</a>
+                  </>
+                ),
+              },
+            ].map(({ title, content }) => (
+              <div key={title}>
+                <h3 style={{
+                  fontFamily: "var(--font-cormorant), Georgia, serif",
+                  fontSize: "1.6rem", color: "var(--text-dark)",
+                  marginBottom: 16, fontWeight: 400,
+                }}>{title}</h3>
+                {content}
               </div>
-            </div>
-
-            {/* This One's On Us */}
-            <div>
-              <h3 className="font-serif text-2xl mb-4" style={{ color: "var(--text-dark)" }}>
-                This One&apos;s On Us
-              </h3>
-              <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)", fontFamily: "var(--font-lato)" }}>
-                We know many of you are travelling from different places where weddings are done in very different ways,
-                so just to make it simple — once you arrive, everything is included. No surprises, just the celebration.
-              </p>
-              <p className="text-sm leading-relaxed mt-3" style={{ color: "var(--text-muted)", fontFamily: "var(--font-lato)" }}>
-                From the moment you arrive you will be welcomed with a cocktail and drinks, followed by dinner, and later a
-                five-hour open bar. The only things not included are accommodation and transportation.
-              </p>
-              <p className="text-sm font-semibold mt-3" style={{ color: "var(--text-dark)", fontFamily: "var(--font-lato)" }}>
-                Just arrive ready to celebrate. We&apos;ll take care of the rest!
-              </p>
-            </div>
-
-            {/* Children */}
-            <div>
-              <h3 className="font-serif text-2xl mb-4" style={{ color: "var(--text-dark)" }}>
-                Children
-              </h3>
-              <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)", fontFamily: "var(--font-lato)" }}>
-                We adore your little ones, truly, but for this celebration we&apos;re imagining a moment for adults to fully switch off
-                and enjoy a well-deserved, responsibility-free evening together. We would love for guests to see this as the perfect
-                opportunity for a rare night off parenting duties!
-              </p>
-              <p className="text-sm leading-relaxed mt-3" style={{ color: "var(--text-muted)", fontFamily: "var(--font-lato)" }}>
-                We completely understand that this is not always feasible, so if there is no other option, of course you are
-                welcome to bring them — just let us know in advance.
-              </p>
-            </div>
-
-            {/* Plus-Ones */}
-            <div>
-              <h3 className="font-serif text-2xl mb-4" style={{ color: "var(--text-dark)" }}>
-                Plus-Ones
-              </h3>
-              <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)", fontFamily: "var(--font-lato)" }}>
-                If your invitation includes a guest&apos;s name, then yes, they&apos;re invited. Otherwise, we&apos;re keeping the celebration
-                intimate and are unable to accommodate additional guests.
-              </p>
-            </div>
-
-            {/* Unplugged Ceremony */}
-            <div>
-              <h3 className="font-serif text-2xl mb-4" style={{ color: "var(--text-dark)" }}>
-                An Unplugged Ceremony
-              </h3>
-              <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)", fontFamily: "var(--font-lato)" }}>
-                We&apos;ve gone all in on capturing this day properly, with a professional photographer and videographer documenting
-                every laugh, tear and questionable dance move. For this reason, we kindly ask that the ceremony is <strong style={{ color: "var(--text-dark)" }}>phone free</strong>.
-              </p>
-              <p className="text-sm leading-relaxed mt-3" style={{ color: "var(--text-muted)", fontFamily: "var(--font-lato)" }}>
-                Once we move beyond the ceremony, please feel free to bring your phones out and capture all the fun and chaos!
-              </p>
-            </div>
-
-            {/* Wedding Album */}
-            <div>
-              <h3 className="font-serif text-2xl mb-4" style={{ color: "var(--text-dark)" }}>
-                Wedding Album
-              </h3>
-              <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--text-muted)", fontFamily: "var(--font-lato)" }}>
-                We will share a joint photo album where you can upload anything you capture. We would genuinely love to see
-                the day through your perspective too!
-              </p>
-              <a
-                href="#"
-                className="inline-block px-8 py-3 text-xs tracking-widest uppercase transition-opacity hover:opacity-70"
-                style={{
-                  background: "var(--dark)",
-                  color: "var(--gold)",
-                  fontFamily: "var(--font-lato)",
-                }}
-              >
-                Shared Album →
-              </a>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ── DISCOVER GALICIA ────────────────────────────────────────────── */}
-      <section
-        className="section-dark relative py-32 px-6 text-center overflow-hidden"
-      >
-        <div className="absolute inset-0">
-          <Image
-            src="/photos/galicia.jpg"
-            alt="Galicia"
-            fill
-            className="object-cover opacity-30"
-          />
-          <div
-            className="absolute inset-0"
-            style={{ background: "rgba(26,23,20,0.5)" }}
-          />
+      {/* ── DISCOVER GALICIA ─────────────────────────────────────────────── */}
+      <section style={{
+        position: "relative", background: "var(--dark)",
+        padding: "120px 24px", textAlign: "center", overflow: "hidden",
+      }}>
+        <div style={{ position: "absolute", inset: 0 }}>
+          <Image src="/photos/galicia.jpg" alt="Galicia" fill style={{ objectFit: "cover", opacity: 0.28 }} />
+          <div style={{ position: "absolute", inset: 0, background: "rgba(26,23,20,0.45)" }} />
         </div>
-        <div className="relative z-10 max-w-2xl mx-auto">
-          <p
-            className="text-xs tracking-[0.3em] uppercase mb-4"
-            style={{ color: "var(--gold)", fontFamily: "var(--font-lato)" }}
-          >
-            While You&apos;re Here
-          </p>
-          <h2
-            className="font-serif font-light mb-6"
-            style={{ fontSize: "clamp(2.5rem, 7vw, 5rem)", color: "var(--text-cream)" }}
-          >
-            Discover Galicia
-          </h2>
-          <div className="divider-gold mb-8" />
-          <p className="text-sm leading-relaxed" style={{ color: "var(--text-cream)", opacity: 0.7, fontFamily: "var(--font-lato)" }}>
-            Santiago de Compostela is one of Spain&apos;s most beautiful cities, rich in history, stunning architecture,
-            and incredible food. We encourage you to arrive a few days early or stay longer to explore the magic of Galicia —
-            its coastline, the Rías Baixas, the seafood, and the lush green landscapes.
+        <div style={{ position: "relative", zIndex: 1, maxWidth: 680, margin: "0 auto" }}>
+          <p style={{ fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 12, fontFamily: "var(--font-lato)" }}>While You're Here</p>
+          <h2 style={{
+            fontFamily: "var(--font-cormorant), Georgia, serif",
+            fontSize: "clamp(2.5rem, 7vw, 5rem)", fontWeight: 300,
+            color: "var(--text-cream)", margin: "0 0 24px",
+          }}>Discover Galicia</h2>
+          <div style={{ width: 60, height: 1, background: "var(--gold)", margin: "0 auto 32px" }} />
+          <p style={{ fontSize: "0.85rem", lineHeight: 1.9, color: "var(--text-cream)", opacity: 0.65, fontFamily: "var(--font-lato)" }}>
+            Santiago de Compostela is one of Spain's most beautiful cities, rich in history and incredible food.
+            We encourage you to arrive early or stay longer to explore Galicia — its coastline, the Rías Baixas, the seafood, and the lush green landscapes.
           </p>
         </div>
       </section>
 
-      {/* ── RSVP ────────────────────────────────────────────────────────── */}
-      <section
-        id="rsvp"
-        className="section-dark py-32 px-6 text-center"
-        style={{ borderTop: "1px solid rgba(201,169,110,0.2)" }}
-      >
-        <p
-          className="text-xs tracking-[0.3em] uppercase mb-4"
-          style={{ color: "var(--gold)", fontFamily: "var(--font-lato)" }}
-        >
-          Join Us
-        </p>
-        <h2
-          className="font-serif font-light mb-6"
-          style={{ fontSize: "clamp(3rem, 8vw, 6rem)", color: "var(--text-cream)" }}
-        >
-          RSVP
-        </h2>
-        <div className="divider-gold mb-8" />
-        <p className="text-sm mb-10 max-w-md mx-auto leading-relaxed" style={{ color: "var(--text-cream)", opacity: 0.7, fontFamily: "var(--font-lato)" }}>
-          Please confirm your attendance by clicking the button below.
-          We can&apos;t wait to celebrate with you!
-        </p>
-        {/* Replace this href with your external RSVP link */}
-        <a
-          href="YOUR_RSVP_LINK_HERE"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block px-14 py-4 text-sm tracking-[0.2em] uppercase transition-opacity hover:opacity-70"
-          style={{
-            background: "var(--gold)",
-            color: "var(--dark)",
-            fontFamily: "var(--font-lato)",
-            fontWeight: 700,
-          }}
-        >
-          RSVP Here
-        </a>
+      {/* ── RSVP ─────────────────────────────────────────────────────────── */}
+      <section id="rsvp" style={{
+        background: "var(--dark)", padding: "120px 24px", textAlign: "center",
+        borderTop: "1px solid rgba(201,169,110,0.15)",
+      }}>
+        <div style={{ maxWidth: 560, margin: "0 auto" }}>
+          <p style={{ fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 12, fontFamily: "var(--font-lato)" }}>Join Us</p>
+          <h2 style={{
+            fontFamily: "var(--font-cormorant), Georgia, serif",
+            fontSize: "clamp(3.5rem, 10vw, 7rem)", fontWeight: 300,
+            color: "var(--text-cream)", margin: "0 0 16px",
+          }}>RSVP</h2>
+          <div style={{ width: 60, height: 1, background: "var(--gold)", margin: "0 auto 32px" }} />
+          <p style={{ fontSize: "0.85rem", lineHeight: 1.8, color: "var(--text-cream)", opacity: 0.6, marginBottom: 48, fontFamily: "var(--font-lato)" }}>
+            Please confirm your attendance. We can't wait to celebrate with you!
+          </p>
+          {/* Replace href with your external RSVP URL */}
+          <a href="YOUR_RSVP_LINK_HERE" target="_blank" rel="noopener noreferrer" style={{
+            display: "inline-block", padding: "16px 56px",
+            background: "var(--gold)", color: "var(--dark)",
+            textDecoration: "none", fontSize: "0.7rem",
+            letterSpacing: "0.2em", textTransform: "uppercase",
+            fontFamily: "var(--font-lato)", fontWeight: 700,
+          }}>RSVP Here</a>
+        </div>
       </section>
 
-      {/* ── CONTACT US ──────────────────────────────────────────────────── */}
-      <section
-        className="section-dark py-24 px-6 text-center"
-        style={{ borderTop: "1px solid rgba(201,169,110,0.1)" }}
-      >
-        <div className="relative max-w-4xl mx-auto">
-          <div
-            className="relative overflow-hidden mb-16 mx-auto"
-            style={{ height: "400px", maxWidth: "600px", background: "var(--dark-2)" }}
-          >
-            <Image
-              src="/photos/contact.jpg"
-              alt="Ioana & Fran"
-              fill
-              className="object-cover opacity-60"
-            />
-            <div
-              className="absolute inset-0 flex flex-col items-center justify-center"
-              style={{ background: "rgba(26,23,20,0.3)" }}
-            >
-              <h2
-                className="font-serif font-light italic"
-                style={{ fontSize: "clamp(2.5rem, 6vw, 4rem)", color: "var(--text-cream)" }}
-              >
-                Ioana &amp; Fran
-              </h2>
-              <p
-                className="text-xs tracking-[0.3em] uppercase mt-3"
-                style={{ color: "var(--gold)", fontFamily: "var(--font-lato)" }}
-              >
+      {/* ── CONTACT US ───────────────────────────────────────────────────── */}
+      <section style={{
+        background: "var(--dark)", padding: "96px 24px", textAlign: "center",
+        borderTop: "1px solid rgba(201,169,110,0.1)",
+      }}>
+        <div style={{ maxWidth: 800, margin: "0 auto" }}>
+          <div style={{ position: "relative", height: 420, maxWidth: 580, margin: "0 auto 64px", background: "var(--dark-2)" }}>
+            <Image src="/photos/contact.jpg" alt="Ioana & Fran" fill style={{ objectFit: "cover", opacity: 0.55 }} />
+            <div style={{
+              position: "absolute", inset: 0,
+              display: "flex", flexDirection: "column",
+              alignItems: "center", justifyContent: "center",
+              background: "rgba(26,23,20,0.25)",
+            }}>
+              <h2 style={{
+                fontFamily: "var(--font-cormorant), Georgia, serif",
+                fontSize: "clamp(2rem, 6vw, 3.5rem)", fontWeight: 300,
+                fontStyle: "italic", color: "var(--text-cream)", margin: 0,
+              }}>Ioana &amp; Fran</h2>
+              <p style={{ fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--gold)", marginTop: 12, fontFamily: "var(--font-lato)" }}>
                 September 12th, 2026
               </p>
             </div>
           </div>
 
-          <p
-            className="text-xs tracking-[0.3em] uppercase mb-6"
-            style={{ color: "var(--gold)", fontFamily: "var(--font-lato)" }}
-          >
-            Contact Us
-          </p>
-          <div className="flex flex-col md:flex-row justify-center gap-12">
+          <p style={{ fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 40, fontFamily: "var(--font-lato)" }}>Contact Us</p>
+
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "flex-start", gap: 80 }}>
             <div>
-              <p className="font-serif text-2xl mb-1" style={{ color: "var(--text-cream)" }}>Ioana</p>
-              <a
-                href="tel:+34690155108"
-                className="text-sm hover:opacity-70 transition-opacity block"
-                style={{ color: "var(--gold)", fontFamily: "var(--font-lato)" }}
-              >
-                +34 690 155 108
-              </a>
-              <a
-                href="mailto:giurcomez@gmail.com"
-                className="text-sm hover:opacity-70 transition-opacity block mt-1"
-                style={{ color: "var(--text-cream)", opacity: 0.5, fontFamily: "var(--font-lato)" }}
-              >
-                giurcomez@gmail.com
-              </a>
+              <p style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.8rem", color: "var(--text-cream)", marginBottom: 4 }}>Ioana</p>
+              <a href="tel:+34690155108" style={{ display: "block", fontSize: "0.8rem", color: "var(--gold)", textDecoration: "none", fontFamily: "var(--font-lato)" }}>+34 690 155 108</a>
+              <a href="mailto:giurcomez@gmail.com" style={{ display: "block", fontSize: "0.75rem", color: "var(--text-cream)", opacity: 0.45, textDecoration: "none", marginTop: 4, fontFamily: "var(--font-lato)" }}>giurcomez@gmail.com</a>
             </div>
-            <div
-              className="hidden md:block self-stretch"
-              style={{ width: "1px", background: "rgba(201,169,110,0.2)" }}
-            />
+            <div style={{ width: 1, alignSelf: "stretch", background: "rgba(201,169,110,0.2)" }} />
             <div>
-              <p className="font-serif text-2xl mb-1" style={{ color: "var(--text-cream)" }}>Fran</p>
-              <a
-                href="tel:+34697819765"
-                className="text-sm hover:opacity-70 transition-opacity block"
-                style={{ color: "var(--gold)", fontFamily: "var(--font-lato)" }}
-              >
-                +34 697 819 765
-              </a>
+              <p style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.8rem", color: "var(--text-cream)", marginBottom: 4 }}>Fran</p>
+              <a href="tel:+34697819765" style={{ display: "block", fontSize: "0.8rem", color: "var(--gold)", textDecoration: "none", fontFamily: "var(--font-lato)" }}>+34 697 819 765</a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── FOOTER ──────────────────────────────────────────────────────── */}
-      <footer
-        className="py-6 text-center"
-        style={{ background: "var(--dark)", borderTop: "1px solid rgba(201,169,110,0.1)" }}
-      >
-        <p
-          className="font-serif italic text-lg"
-          style={{ color: "var(--gold)", opacity: 0.6 }}
-        >
-          Ioana &amp; Fran — 12 · IX · 2026
-        </p>
+      {/* ── FOOTER ───────────────────────────────────────────────────────── */}
+      <footer style={{
+        background: "var(--dark)", padding: "24px",
+        textAlign: "center", borderTop: "1px solid rgba(201,169,110,0.08)",
+      }}>
+        <p style={{
+          fontFamily: "var(--font-cormorant), Georgia, serif",
+          fontStyle: "italic", fontSize: "1.1rem",
+          color: "var(--gold)", opacity: 0.5,
+        }}>Ioana &amp; Fran — 12 · IX · 2026</p>
       </footer>
     </main>
   );
