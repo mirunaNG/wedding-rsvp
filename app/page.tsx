@@ -3,7 +3,7 @@ import Countdown from "./components/Countdown";
 
 // ─── Photos ──────────────────────────────────────────────────────────────────
 // Upload your photos to /public/photos/ with these filenames:
-//   hero.jpg       – hero background (landscape, couple)
+//   hero.png       – hero background (landscape, couple)
 //   contact.jpg    – couple photo for Contact Us
 //   hotel.jpg      – Hotel Monumento San Francisco exterior
 //   santiago.jpg   – Santiago de Compostela cityscape
@@ -127,21 +127,22 @@ export default function Home() {
       }}>
         {/* Background image for countdown */}
         <div style={{ position: "absolute", inset: 0 }}>
-          <Image src="/photos/hero.jpg" alt="" fill style={{ objectFit: "cover", opacity: 0.2 }} />
+          <Image src="/photos/hero.png" alt="" fill style={{ objectFit: "cover", opacity: 0.2 }} />
           <div style={{ position: "absolute", inset: 0, background: "rgba(26,23,20,0.6)" }} />
         </div>
         <div style={{ position: "relative", zIndex: 1, maxWidth: 900, margin: "0 auto" }}>
           <p style={{
-            fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase",
-            color: "var(--gold)", marginBottom: "12px", fontFamily: "var(--font-lato)",
+            fontSize: "3rem",
+            color: "white", fontFamily: "Pinyon Script, cursive",
           }}>Almost Our Forever</p>
-          <h2 style={{
-            fontFamily: "var(--font-cormorant), Georgia, serif",
-            fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 300,
-            fontStyle: "italic", color: "var(--text-cream)",
-            marginBottom: "64px",
-          }}>The Countdown</h2>
           <Countdown />
+          {/* Las 3 imagenes debajo del countdown */}
+          <div style={{ display: "flex", justifyContent: "center", gap: "24px", marginTop: "48px" }}>
+            <Image src="/photos/countdown1.png" alt="Memory 1" width={300} height={200} style={{ width: "100%", height: "auto" }} />
+            <Image src="/photos/countdown2.png" alt="Memory 2" width={300} height={200} style={{ width: "100%", height: "auto" }} />
+            <Image src="/photos/countdown3.png" alt="Memory 3" width={300} height={200} style={{ width: "100%", height: "auto" }} />
+          </div>
+
         </div>
       </section>
 

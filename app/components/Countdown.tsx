@@ -42,19 +42,19 @@ export default function Countdown() {
           <div className="text-center">
             <div
               className="font-serif text-5xl md:text-7xl font-light"
-              style={{ color: "var(--gold-light)", lineHeight: 1 }}
+              style={{ color: "white", lineHeight: 1 }}
             >
               {pad(value)}
             </div>
             <div
               className="text-xs tracking-widest uppercase mt-2"
-              style={{ color: "var(--text-cream)", opacity: 0.6, fontFamily: "var(--font-lato)" }}
+              style={{ color: "white", opacity: 0.6, fontFamily: "var(--font-lato)" }}
             >
               {label}
             </div>
           </div>
           {i < 3 && (
-            <span className="font-serif text-4xl md:text-6xl font-light mb-4" style={{ color: "var(--gold)", opacity: 0.5 }}>
+            <span className="font-serif text-4xl md:text-6xl font-light mb-4" style={{ color: "white", opacity: 0.5 }}>
               :
             </span>
           )}
