@@ -31,33 +31,26 @@ export default function Countdown() {
   }, []);
 
   return (
-    <div className="flex items-center justify-center gap-6 md:gap-10">
+    <div className="flex items-center justify-center gap-10 md:gap-16">
       {[
         { value: timeLeft.days, label: "Days" },
         { value: timeLeft.hours, label: "Hours" },
         { value: timeLeft.minutes, label: "Minutes" },
         { value: timeLeft.seconds, label: "Seconds" },
       ].map(({ value, label }, i) => (
-        <div key={label} className="flex items-center gap-6 md:gap-10">
-          <div className="text-center">
-            <div
-              className="text-5xl md:text-7xl font-normal"
-              style={{ color: "white", lineHeight: 1, fontFamily: "var(--font-playfair), serif" }}
-            >
-              {pad(value)}
-            </div>
-            <div
-              className="text-xs tracking-widest uppercase mt-5"
-              style={{ color: "white", opacity: 0.6, fontFamily: "var(--font-playfair), serif" }}
-            >
-              {label}
-            </div>
+        <div key={label} className="text-center">
+          <div
+            className="text-6xl md:text-5xl font-normal"
+            style={{ color: "white", lineHeight: 1, fontFamily: "var(--font-playfair), serif" }}
+          >
+            {pad(value)}
           </div>
-          {i < 3 && (
-            <span className="text-4xl md:text-6xl font-normal mb-4" style={{ color: "white", opacity: 0.5, fontFamily: "var(--font-playfair), serif" }}>
-              :
-            </span>
-          )}
+          <div
+            className="text-[10px] uppercase"
+            style={{ color: "white", opacity: 0.7, fontFamily: "sans-serif", letterSpacing: "0.3em", marginTop: "1rem" }}
+          >
+            {label}
+          </div>
         </div>
       ))}
     </div>

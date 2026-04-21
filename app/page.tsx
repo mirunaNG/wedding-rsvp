@@ -128,20 +128,19 @@ export default function Home() {
       }}>
         {/* Background image for countdown */}
         <div style={{ position: "absolute", inset: 0 }}>
-          <Image src="/photos/hero.png" alt="" fill style={{ objectFit: "cover", opacity: 0.2 }} />
+          <Image src="/photos/fondoCountdown.png" alt="" fill style={{ objectFit: "cover", filter: "grayscale(40%)" }} />
           <div style={{ position: "absolute", inset: 0, background: "rgba(26,23,20,0.6)" }} />
         </div>
         <div style={{ position: "relative", zIndex: 1, maxWidth: 900, margin: "0 auto" }}>
           <p style={{
-            fontSize: "3rem",
-            color: "white", fontFamily: "var(--font-pinyon-script), cursive",
+            fontSize: "5rem",
+            color: "#faf1e1", fontFamily: "var(--font-pinyon-script), cursive",
           }}>Almost Our Forever</p>
           <Countdown />
-          {/* Las 3 imagenes debajo del countdown */}
-          <div style={{ display: "flex", justifyContent: "center", gap: "24px", marginTop: "48px" }}>
-            <Image src="/photos/countdown1.png" alt="Memory 1" width={300} height={200} style={{ width: "100%", height: "auto" }} />
-            <Image src="/photos/countdown2.png" alt="Memory 2" width={300} height={200} style={{ width: "100%", height: "auto" }} />
-            <Image src="/photos/countdown3.png" alt="Memory 3" width={300} height={200} style={{ width: "100%", height: "auto" }} />
+          <div style={{ display: "flex", justifyContent: "center", gap: "90px", marginTop: "75px" }}>
+            <Image src="/photos/countdown1.png" alt="Memory 1" width={300} height={300} style={{ width: "440px", height: "340px", objectFit: "cover", opacity: 0.85, filter: "sepia(20%)" }} />
+            <Image src="/photos/countdown2.png" alt="Memory 2" width={300} height={300} style={{ width: "440px", height: "340px", objectFit: "cover", opacity: 0.85, filter: "sepia(20%)" }} />
+            <Image src="/photos/countdown3.png" alt="Memory 3" width={300} height={300} style={{ width: "440px", height: "340px", objectFit: "cover", opacity: 0.85, filter: "sepia(20%)" }} />
           </div>
 
         </div>
