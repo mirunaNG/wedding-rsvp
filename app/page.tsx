@@ -146,40 +146,43 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── OUR STORY ────────────────────────────────────────────────────── */}
-      <section className="section-pad" style={{ background: "var(--cream)" }}>
-        <div style={{ maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
+      {/* ── OUR STORY ────────────────────────────────────── */}
+      <section className="section-pad" style={{ background: "#2d2b25", paddingBottom: "80px" }}>
+        <div style={{ maxWidth: 1400, margin: "0 auto", textAlign: "center" }}>
           <p style={{
-            fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase",
-            color: "var(--gold)", marginBottom: "12px", fontFamily: "var(--font-lato)",
+            fontSize: "4rem",
+            color: "#faf1e1", marginBottom: "32px", fontFamily: "var(--font-pinyon-script), cursive",
           }}>Our Story</p>
-          <div style={{ width: 60, height: 1, background: "var(--gold)", margin: "0 auto 48px" }} />
-          {[
-            `It was just the beginning of 2018 when the list of exchange architecture students admitted to the University of Iași was published, and we both found ourselves browsing online forums, each in our own way, trying to imagine what the coming year might bring. We had already come across each other without noticing.`,
-            `After the summer, our paths led us both to Romania. Not long after arriving at that rather run-down dormitory (which would soon become home), our rooms — coincidentally right next to each other — were suddenly left without electricity. As we stepped out into the corridor, we met for the first time.`,
-            `From that point on, what began as coincidence slowly turned into friendship. An unforgettable year followed, and when the time came to say goodbye, we did so in tears, convinced we might never see each other again… but that was not to be.`,
-            `During the pandemic, we found our way back to each other. We both felt that too much time had passed without seeing one another, and that trivial virus was not about to stand in our way. So, almost on a whim, we decided to meet in Porto and spend a few days by the sea catching up. As you can imagine, that reunion brought us closer in a way that made us never want to say goodbye again.`,
-            `Since then, and as the beginning of our story had quietly foreshadowed, we've never stopped travelling and discovering the world together. So much so that, during our trip to New York last October, we decided to make our story forever.`,
-          ].map((para, i) => (
-            <p key={i} style={{
-              fontFamily: "var(--font-cormorant), Georgia, serif",
-              fontSize: "1.2rem", lineHeight: 1.8,
-              color: "var(--text-dark)", marginBottom: "24px",
-            }}>{para}</p>
-          ))}
-        </div>
-      </section>
-
-      {/* ── PHOTO COLLAGE ────────────────────────────────────────────────── */}
-      <section style={{ background: "var(--dark)", padding: "80px 24px 100px" }}>
-        <div style={{ maxWidth: 1080, margin: "0 auto", position: "relative" }}>
-          <Image
-            src="/photos/polaroids.png"
-            alt="Our memories"
-            width={1080}
-            height={720}
-            style={{ width: "100%", height: "auto", display: "block" }}
-          />
+          <div style={{
+            background: "#3d3a31",
+            padding: "40px 48px",
+            textAlign: "left",
+            marginBottom: "60px",
+          }}>
+            {[
+              `It was just the beginning of 2018 when the list of exchange architecture students admitted to the University of Iași was published, and we both found ourselves browsing online forums, each in our own way, trying to imagine what the coming year might bring. We had already come across each other without noticing.`,
+              `After the summer, our paths led us both to Romania. Not long after arriving at that rather run-down dormitory (which would soon become home), our rooms — coincidentally right next to each other — were suddenly left without electricity. As we stepped out into the corridor, we met for the first time.`,
+              `From that point on, what began as coincidence slowly turned into friendship. An unforgettable year followed, and when the time came to say goodbye, we did so in tears, convinced we might never see each other again… but that was not to be.`,
+              `During the pandemic, we found our way back to each other. We both felt that too much time had passed without seeing one another, and that trivial virus was not about to stand in our way. So, almost on a whim, we decided to meet in Porto and spend a few days by the sea catching up. As you can imagine, that reunion brought us closer in a way that made us never want to say goodbye again.`,
+              `Since then, and as the beginning of our story had quietly foreshadowed, we've never stopped travelling and discovering the world together. So much so that, during our trip to New York last October, we decided to make our story forever.`,
+            ].map((para, i) => (
+              <p key={i} style={{
+                fontFamily: "var(--font-cormorant), Georgia, serif",
+                fontSize: "1.25rem", lineHeight: 1.8,
+                color: "#faf1e1", marginBottom: "24px",
+              }}>{para}</p>
+            ))}
+          </div>
+          {/* photo collage inside same section */}
+          <div style={{ maxWidth: 1080, margin: "0 auto" }}>
+            <Image
+              src="/photos/polaroids.png"
+              alt="Our memories"
+              width={1080}
+              height={720}
+              style={{ width: "100%", height: "auto", display: "block" }}
+            />
+          </div>
         </div>
       </section>
 

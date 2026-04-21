@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Lato, Great_Vibes, Playfair_Display, Pinyon_Script, Quattrocento, Roboto_Mono } from "next/font/google";
+import { Cormorant_Garamond, Lato, Playfair_Display, Pinyon_Script, Quattrocento, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -15,11 +15,6 @@ const lato = Lato({
   weight: ["300", "400", "700"],
 });
 
-const greatVibes = Great_Vibes({
-  variable: "--font-great-vibes",
-  subsets: ["latin"],
-  weight: ["400"],
-});
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -56,7 +51,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${lato.variable} ${greatVibes.variable} ${playfair.variable} ${pinyonScript.variable} ${quattrocento.variable} ${robotoMono.variable} h-full antialiased`}>
+    <html lang="en" className={`${cormorant.variable} ${lato.variable} ${playfair.variable} ${pinyonScript.variable} ${quattrocento.variable} ${robotoMono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
