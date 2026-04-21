@@ -1,16 +1,6 @@
 import Image from "next/image";
 import Countdown from "./components/Countdown";
-
-// ─── Photos ──────────────────────────────────────────────────────────────────
-// Upload your photos to /public/photos/ with these filenames:
-//   hero.png       – hero background (landscape, couple)
-//   contact.jpg    – couple photo for Contact Us
-//   hotel.jpg      – Hotel Monumento San Francisco exterior
-//   santiago.jpg   – Santiago de Compostela cityscape
-//   galicia.jpg    – Galicia landscape
-//   polaroids.png  – photo collage image
-// ─────────────────────────────────────────────────────────────────────────────
-
+import Link from "next/link";
 
 const TIMELINE = [
   { time: "17:00", label: "Welcome" },
@@ -84,7 +74,7 @@ export default function Home() {
           }} />
         </div>
 
-        {/* Names + date — bottom center, above the bottom bar */}
+        {/* Names + date */}
         <div style={{ position: "absolute", bottom: 80, left: 0, right: 0, zIndex: 1, padding: "0 30px", textAlign: "center" }}>
           <h1 style={{
             fontFamily: "var(--font-pinyon-script), cursive",
@@ -173,7 +163,7 @@ export default function Home() {
               }}>{para}</p>
             ))}
           </div>
-          {/* photo collage inside same section */}
+          {/* collage */}
           <div style={{ maxWidth: 1080, margin: "0 auto" }}>
             <Image
               src="/photos/polaroids.png"
@@ -187,34 +177,29 @@ export default function Home() {
       </section>
 
       {/* ── THE WEDDING DAY ──────────────────────────────────────────────── */}
-      <section id="day" className="section-pad" style={{ background: "var(--dark)" }}>
+      <section id="day" className="section-pad" style={{ background: "#cdc1ab" }}>
         <div className="grid-2-center" style={{ maxWidth: 900, margin: "0 auto" }}>
-          <div>
-            <p style={{
-              fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase",
-              color: "var(--gold)", marginBottom: "20px", fontFamily: "var(--font-lato)",
-            }}>September 12th, 2026</p>
+          <div style={{ textAlign: "right" }}>
             <h2 style={{
-              fontFamily: "var(--font-cormorant), Georgia, serif",
+              fontFamily: "var(--font-quattrocento), Georgia, serif",
               fontSize: "clamp(3rem, 7vw, 5.5rem)", fontWeight: 300,
-              lineHeight: 0.9, color: "var(--text-cream)", margin: 0,
-            }}>The<br />Wedding<br />Day</h2>
-            <div style={{ width: 60, height: 1, background: "var(--gold)", marginTop: 32 }} />
+              lineHeight: 0.9, color: "#2d2b25", margin: 0,
+            }}>THE<br />WEDDING<br />DAY</h2>
           </div>
           <div>
             {TIMELINE.map(({ time, label }) => (
               <div key={time} style={{
-                display: "flex", alignItems: "baseline", gap: "24px",
-                padding: "14px 0",
-                borderBottom: "1px solid rgba(201,169,110,0.12)",
+                display: "flex", alignItems: "baseline", gap: "100px",
+                padding: "10px 0",
+                borderBottom: "1px dotted #2d2b25",
               }}>
                 <span style={{
-                  fontFamily: "var(--font-cormorant), Georgia, serif",
-                  fontSize: "1.1rem", color: "var(--gold)", minWidth: 56,
+                  fontFamily: "var(--font-quattrocento), Georgia, serif",
+                  fontSize: "1rem", color: "#2d2b25", minWidth: 56,
                 }}>{time}</span>
                 <span style={{
-                  fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase",
-                  color: "var(--text-cream)", fontFamily: "var(--font-lato)",
+                  fontSize: "1rem",
+                  color: "#2d2b25", fontFamily: "var(--font-roboto-mono), monospace",
                 }}>{label}</span>
               </div>
             ))}
@@ -223,117 +208,154 @@ export default function Home() {
       </section>
 
       {/* ── THE PLACE ────────────────────────────────────────────────────── */}
-      <section id="place" className="section-pad" style={{ background: "var(--cream)" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 64 }}>
+      <section id="place" className="section-pad" style={{ background: "#2d2b25" }}>
+        <div style={{ maxWidth: 1300, margin: "0 auto", gap: 50}}>
+          <div style={{ textAlign: "left", marginBottom:10}}>
             <p style={{
-              fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase",
-              color: "var(--gold)", marginBottom: 12, fontFamily: "var(--font-lato)",
+              fontSize: "3rem", textTransform: "uppercase",
+              color: "#faf1e1", marginBottom: 0, fontFamily: "var(--font-playfair), serif",
             }}>The Place</p>
             <h2 style={{
-              fontFamily: "var(--font-cormorant), Georgia, serif",
-              fontSize: "clamp(2rem, 5vw, 4rem)", fontWeight: 300,
-              color: "var(--text-dark)", margin: 0,
-            }}>Hotel Monumento San Francisco</h2>
+              fontFamily: "var(--font-pinyon-script), Georgia, serif",
+              fontSize: "clamp(1.5rem, 3vw, 5rem)", fontWeight: 300,
+              color: "#faf1e1",
+            }}>San Francisco Hotel Monumento </h2>
           </div>
 
-          <div className="grid-2" style={{ gap: 64 }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-              <div style={{ position: "relative", height: 320, background: "var(--cream-2)" }}>
-                <Image src="/photos/hotel.jpg" alt="Hotel Monumento" fill style={{ objectFit: "cover" }} />
+          <div style={{ display: "flex", flexDirection: "column", gap: 50 }}>
+
+            {/* Hotel photo + map */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 150, alignItems: "stretch" }}>
+              <div style={{ position: "relative", maxHeight: 420,height: "100%", maxWidth: 900, width: "100%", }}>
+                <Image src="/photos/hotel.png" alt="Hotel Monumento" fill style={{ objectFit: "cover" }} />
               </div>
-              <div style={{ position: "relative", height: 200, background: "var(--cream-2)" }}>
-                <Image src="/photos/santiago.jpg" alt="Santiago de Compostela" fill style={{ objectFit: "cover" }} />
-              </div>
-            </div>
-
-            <div>
-              <p style={{
-                fontFamily: "var(--font-cormorant), Georgia, serif",
-                fontSize: "1.5rem", color: "var(--text-dark)", marginBottom: 4,
-              }}>San Francisco Hotel Monumento</p>
-              <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", marginBottom: 4 }}>
-                Campillo de San Francisco, 3 · 15705 Santiago de Compostela
-              </p>
-              <a href="https://www.sanfranciscohm.com" target="_blank" rel="noopener noreferrer"
-                style={{ fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--gold)", textDecoration: "none", fontFamily: "var(--font-lato)" }}>
-                www.sanfranciscohm.com
-              </a>
-
-              <div style={{ width: 40, height: 1, background: "var(--gold)", margin: "32px 0" }} />
-
-              <h3 style={{
-                fontFamily: "var(--font-cormorant), Georgia, serif",
-                fontSize: "1.4rem", color: "var(--text-dark)", marginBottom: 16,
-              }}>How To Get There</h3>
-              {[
-                { title: "By Plane", text: "The nearest airport is Santiago de Compostela Airport (SCQ), approximately 15 minutes from the city center. You can also fly into A Coruña Airport (LCG), about a 1-hour drive from the venue." },
-                { title: "By Train", text: "Santiago de Compostela Railway Station offers frequent high-speed and regional connections. Around a 10-minute drive or 20-minute walk from the hotel." },
-                { title: "By Car", text: "Santiago is easily accessible by road with good motorway connections. Parking is available near the hotel, though access to the historic center may be limited." },
-              ].map(({ title, text }) => (
-                <p key={title} style={{ fontSize: "0.85rem", lineHeight: 1.7, color: "var(--text-muted)", marginBottom: 14 }}>
-                  <strong style={{ color: "var(--text-dark)", fontFamily: "var(--font-lato)" }}>{title}: </strong>{text}
+              <div style={{ display: "flex", flexDirection: "column", maxWidth: 500, width: "100%" }}>
+                <div style={{ position: "relative", aspectRatio: "4 / 3", width: "100%", opacity: 0.8 }}>
+                  <iframe
+                    src="https://maps.google.com/maps?q=Campillo+de+San+Francisco,+3,+15705+Santiago+de+Compostela&output=embed"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0, display: "block", pointerEvents: "none", position: "absolute", inset: 0 }}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                  <a
+                    href="https://maps.google.com/maps?q=Campillo+de+San+Francisco,+3,+15705+Santiago+de+Compostela"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ position: "absolute", inset: 0 }}
+                    aria-label="Open in Google Maps"
+                  />
+                </div>
+                <p style={{ fontSize: "0.72rem", color: "#faf1e1", marginTop: 10, lineHeight: 1.7, fontFamily: "var(--font-roboto-mono)" }}>
+                  Campillo de San Francisco, 3, 15705 Santiago de Compostela<br />
+                  <a href="https://www.sanfranciscohm.com" target="_blank" rel="noopener noreferrer" 
+                  style={{ color: "#faf1e1", fontFamily: "var(--font-roboto-mono)", textDecoration: "none" }}>www.sanfranciscohm.com</a> | 981581634
                 </p>
-              ))}
+              </div>
             </div>
+
+            {/*How To Get There + second photo */}
+            <div style={{ display: "grid", gridTemplateColumns: "2.25fr 2fr", gap: 80, alignItems: "start" }}>
+              <div style={{ textAlign: "justify" }}>
+                <h3 style={{
+                  fontFamily: "var(--font-playfair), serif", textTransform: "uppercase",
+                  fontSize: "2rem", color: "#faf1e1", marginBottom: 16,
+                }}>How To Get There</h3>
+                <p style={{ fontSize: "0.85rem", lineHeight: 1.7, color: "#faf1e1", fontFamily: "var(--font-quattrocento)", marginBottom: 14 }}>
+                Our wedding will take place at Hotel Monumento San Francisco, located in the heart of Santiago de Compostela’s historic center.                
+                </p>
+                <div style={{ fontSize: "0.85rem", lineHeight: 1.7, color: "#faf1e1", fontFamily: "var(--font-quattrocento)", marginBottom: 14 }}>
+                  Santiago is well connected and easy to reach from many international and domestic locations:
+                  <ul style={{ paddingLeft: 20, marginBottom: 14 }}>
+                  {[
+                    { title: <b>By Plane</b>, text: "The nearest airport is Santiago de Compostela Airport (SCQ), located approximately 15 minutes from the city center. Regular flights operate from major European cities. From the airport, you can take a taxi or bus directly into Santiago. Alternatively, you can also fly into A Coruña Airport (LCG), which is about a 1-hour drive from the venue. From there, you can take a taxi, rent a car, or use public transport to reach the city." },
+                    { title: <b>By Train</b>, text: "Santiago de Compostela Railway Station offers frequent high-speed and regional connections to cities such as Madrid and A Coruña. The station is around a 10-minute drive or 20-minute walk from the hotel." },
+                    { title: <b>By Car</b>, text: "Santiago is easily accessible by road, with good motorway connections across Galicia and the rest of Spain. Parking is available near the hotel, although access to the historic center may be limited." },
+                  ].map(({ title, text }, i) => (
+                    <li key={i} style={{ fontSize: "0.85rem", lineHeight: 1.7, color: "#faf1e1", marginBottom: 10 }}>
+                      <strong style={{ color: "#faf1e1", fontFamily: "var(--font-quattrocento)" }}>{title}: </strong>{text}
+                    </li>
+                  ))}
+                  </ul>
+                </div>
+                <p style={{ fontSize: "0.85rem", lineHeight: 1.7, color: "#faf1e1", fontFamily: "var(--font-quattrocento)", marginBottom: 14 }}>
+                  Once in Santiago, the hotel is within walking distance of the main landmarks, making it easy to reach on foot or by a short taxi ride.
+                </p>
+              </div>
+              <div style={{ position: "relative", aspectRatio: "4 / 3", maxWidth: 500, width: "100%", marginTop: 60 }}>
+                <Image src="/photos/santiago.png" alt="Santiago de Compostela" fill style={{ objectFit: "cover", filter: "grayscale(100%)"}} />
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
 
       {/* ── WHERE TO STAY ────────────────────────────────────────────────── */}
-      <section className="section-pad" style={{ background: "var(--dark-2)" }}>
-        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+      <section className="section-pad" style={{ position: "relative", background: "var(--dark-2)"}}>
+        <Image src="/photos/where-to-stay.png" alt="" fill style={{ objectFit: "cover", opacity: 0.3, zIndex: 0 }} />
+        <div style={{ position: "absolute", inset: 0, background: "rgba(239, 221, 187, 0.12)", zIndex: 2, pointerEvents: "none" }} />
+        <div style={{ position: "relative", zIndex: 1, maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 48 }}>
             <p style={{
-              fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase",
-              color: "var(--gold)", marginBottom: 12, fontFamily: "var(--font-lato)",
+              fontSize: "3rem",
+              color: "white", marginBottom: 12, fontFamily: "var(--font-pinyon-script), cursive",
+              textShadow: "2px 2px 0px rgba(255,255,255,0.12)",
             }}>Where To Stay</p>
             <p style={{
-              fontSize: "0.85rem", lineHeight: 1.8, color: "var(--text-cream)", opacity: 0.65,
-              maxWidth: 640, margin: "0 auto", fontFamily: "var(--font-lato)",
+              fontSize: "1rem", lineHeight: 1.8, color: "#faf1e1",
+              maxWidth: 1000, margin: "0 auto", fontFamily: "var(--font-quattrocento), serif",
             }}>
-              As many of you will be travelling from abroad, we have reserved rooms at the following hotels.
-              Please book early — unbooked rooms will be released two months before the wedding.
+              As many of you will be travelling from abroad, we have reserved rooms at the following hotels for your convenience.
+              <br />
+              Please book early, as availability in Santiago is limited in September and unbooked rooms will be released two months before the wedding.
             </p>
           </div>
 
           <div className="grid-3">
             {/* Option 1 */}
-            <div style={{ padding: 36, border: "1px solid rgba(201,169,110,0.25)" }}>
-              <p style={{ fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)", fontFamily: "var(--font-lato)", marginBottom: 12 }}>An Alternative</p>
-              <h3 style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.4rem", color: "var(--text-cream)", marginBottom: 20 }}>Hotel Capital de Galicia</h3>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "0.8rem", lineHeight: 2, color: "var(--text-cream)", opacity: 0.65, fontFamily: "var(--font-lato)" }}>
-                <li>95€ per double room / night</li>
+            <div style={{ padding: 36, backgroundColor: "#5a564b" }}>
+              <p style={{ fontSize: "1.5rem", textAlign: "center", color: "#faf1e1", fontFamily: "var(--font-pinyon-script), cursive", marginBottom: 12 }}>An Alternative:</p>
+              <Link href="https://www.hotelcapitaldegalicia.com" target="_blank" rel="noopener noreferrer" 
+              style={{ display: "block", fontFamily: "var(--font-playfair), Georgia, serif", textAlign: "center", textTransform: "uppercase", textDecoration: "underline", fontSize: "1.25rem", color: "#faf1e1", marginBottom: 20 }}>
+              Hotel Capital de Galicia</Link>
+              <ul style={{ listStyle: "disc", padding: 0, margin: 20, fontSize: "0.8rem", color: "#faf1e1", fontFamily: "var(--font-quattrocento), serif" }}>
+                <li>More affordable - 95€ per double room per night.</li>
                 <li>Close to the venue</li>
                 <li>Free parking</li>
-                <li>Buffet breakfast — 9€ extra</li>
+                <li>Buffet Breakfast Offered - 9€ extra per night</li>
               </ul>
             </div>
 
             {/* Recommended */}
-            <div style={{ padding: 36, border: "1px solid var(--gold)", background: "rgba(201,169,110,0.06)" }}>
-              <p style={{ fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)", fontFamily: "var(--font-lato)", marginBottom: 12 }}>Our Recommendation</p>
-              <h3 style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.4rem", color: "var(--text-cream)", marginBottom: 20 }}>San Francisco Hotel Monumento</h3>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "0.8rem", lineHeight: 2, color: "var(--text-cream)", opacity: 0.65, fontFamily: "var(--font-lato)" }}>
-                <li>Stay at the venue</li>
-                <li>145€ per double room / night</li>
-                <li>Breakfast — 22€ per guest / day</li>
+            <div style={{ padding: 36, backgroundColor: "#603527" }}>
+              <p style={{ fontSize: "1.5rem", textAlign: "center", color: "#faf1e1", fontFamily: "var(--font-pinyon-script), cursive", marginBottom: 12 }}>Our Recommendation:</p>
+              <Link href="https://sanfranciscohm.com" target="_blank" rel="noopener noreferrer" 
+              style={{ display: "block", fontFamily: "var(--font-playfair), Georgia, serif", textAlign: "center", textTransform: "uppercase", textDecoration: "underline", fontSize: "1.25rem", color: "#faf1e1", marginBottom: 20 }}>
+              San Francisco Hotel Monumento</Link>
+              <ul style={{ listStyle: "disc", padding: 0, margin: 20, fontSize: "0.8rem", color: "#faf1e1", fontFamily: "var(--font-quattrocento), serif" }}>
+                <li>Stay at the venue.</li>
+                <li>Reduced price - 145€ per double room per night.</li>
+                <li>Buffet Breakfast can be added on for 22€ per guest and  day.</li>
               </ul>
-              <a href="https://www.sanfranciscohm.com" target="_blank" rel="noopener noreferrer"
-                style={{ display: "inline-block", marginTop: 24, fontSize: "0.6rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--gold)", textDecoration: "none", fontFamily: "var(--font-lato)" }}>
-                Book Now →
-              </a>
             </div>
 
             {/* Other */}
-            <div style={{ padding: 36, border: "1px solid rgba(201,169,110,0.25)" }}>
-              <p style={{ fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)", fontFamily: "var(--font-lato)", marginBottom: 12 }}>Explore Other Options</p>
-              <h3 style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.4rem", color: "var(--text-cream)", marginBottom: 20 }}>Online Platforms</h3>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "0.8rem", lineHeight: 2.2, color: "var(--text-cream)", opacity: 0.65, fontFamily: "var(--font-lato)" }}>
-                <li>Booking.com</li>
-                <li>Airbnb</li>
-                <li>Expedia</li>
-              </ul>
+            <div style={{ padding: 36, backgroundColor: "#5a564b", gap: 20, display: "flex", flexDirection: "column", alignItems: "center" }}>
+              <p style={{ fontSize: "1.5rem", textAlign: "center", color: "#faf1e1", fontFamily: "var(--font-pinyon-script), cursive", marginBottom: 12 }}>Explore Other Options:</p>
+              <Link href="https://www.booking.com/searchresults.en-gb.html?ss=Santiago+de+Compostela&ssne=Santiago+de+Compostela&ssne_untouched=Santiago+de+Compostela&efdco=1&label=gen173nr-10CAEoggI46AdIClgEaDuIAQGYATO4ARfIAQzYAQPoAQH4AQGIAgGoAgG4Asrc784GwAIB0gIkZDFiMWUwYWQtZWIxOS00ODE0LWE0MmUtMjBlZmM2ZmY4M2Fj2AIB4AIB&aid=304142&lang=en-gb&sb=1&src_elem=sb&src=searchresults&dest_id=-402059&dest_type=city&group_adults=2&no_rooms=1&group_children=0" 
+              target="_blank" rel="noopener noreferrer" 
+              style={{ display: "block", fontFamily: "var(--font-playfair), Georgia, serif", textAlign: "center", textTransform: "uppercase", textDecoration: "underline", fontSize: "1.25rem", color: "#faf1e1", marginBottom: 20 }}>
+              Booking</Link>
+              <Link href="https://www.airbnb.co.uk/s/Santiago-de-Compostela--Spain/homes?refinement_paths%5B%5D=%2Fhomes&place_id=ChIJp3Hd4kT-Lg0REeOHwIhoFOA&location_bb=QiufbcEIVQRCK2s8wQkZvQ%3D%3D&acp_id=fc65f550-bd0e-4014-b1f3-0ecb92024a22&date_picker_type=flexible_dates&flexible_trip_dates%5B%5D=september&search_type=autocomplete_click" 
+              target="_blank" rel="noopener noreferrer" 
+              style={{ display: "block", fontFamily: "var(--font-playfair), Georgia, serif", textAlign: "center", textTransform: "uppercase", textDecoration: "underline", fontSize: "1.25rem", color: "#faf1e1", marginBottom: 20 }}>
+              AirBnB</Link>
+              <Link href="https://www.expedia.co.uk/Hotel-Search?destination=Santiago%20de%20Compostela%2C%20Galicia%2C%20Spain&regionId=3099&latLong=42.878212%2C-8.544845&flexibility=1_DAY&searchRange=2026-09-01_2026-09-30&adults=2&rooms=1&typeaheadCollationId=6bd2c6d3-51f8-48be-bda1-de0aa8374db1&sort=RECOMMENDED&theme=&userIntent=&semdtl=&categorySearch=any_option&useRewards=false" 
+              target="_blank" rel="noopener noreferrer" 
+              style={{ display: "block", fontFamily: "var(--font-playfair), Georgia, serif", textAlign: "center", textTransform: "uppercase", textDecoration: "underline", fontSize: "1.25rem", color: "#faf1e1", marginBottom: 20 }}>
+              Expedia</Link>
             </div>
           </div>
         </div>
