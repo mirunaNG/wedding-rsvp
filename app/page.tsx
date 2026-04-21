@@ -69,7 +69,7 @@ export default function Home() {
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section style={{
-        position: "relative", minHeight: "100vh",
+        position: "relative", height: "100vh",
         display: "flex", flexDirection: "column",
         alignItems: "center", justifyContent: "center",
         textAlign: "center", background: "var(--dark)",
@@ -77,46 +77,47 @@ export default function Home() {
       }}>
         <div style={{ position: "absolute", inset: 0 }}>
           <Image src="/photos/hero.png" alt="Ioana & Fran" fill
-            style={{ objectFit: "cover", opacity: 0.45 }} priority />
+            style={{ objectFit: "cover", opacity: 0.75 }} priority />
           <div style={{
             position: "absolute", inset: 0,
-            background: "linear-gradient(to bottom, rgba(26,23,20,0.2) 0%, rgba(26,23,20,0.55) 50%, rgba(26,23,20,1) 100%)",
+            background: "rgba(26,23,20,0.28)",
           }} />
         </div>
 
-        <div style={{ position: "relative", zIndex: 1, padding: "0 24px" }}>
-          <p style={{
-            fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase",
-            color: "var(--gold)", marginBottom: "28px",
-            fontFamily: "var(--font-lato)",
-          }}>September 12th, 2026</p>
-
+        {/* Names + date — bottom center, above the bottom bar */}
+        <div style={{ position: "absolute", bottom: 80, left: 0, right: 0, zIndex: 1, padding: "0 30px", textAlign: "center" }}>
           <h1 style={{
-            fontFamily: "var(--font-cormorant), Georgia, serif",
-            fontSize: "clamp(5rem, 14vw, 11rem)",
-            fontWeight: 300, lineHeight: 0.88,
+            fontFamily: "var(--font-pinyon-script), cursive",
+            fontSize: "clamp(1rem, 7vw, 7rem)",
+            fontWeight: 400, lineHeight: 1.1,
             color: "var(--text-cream)", margin: 0,
           }}>
-            Ioana<br />
-            <span style={{ color: "var(--gold-light)" }}>&amp;</span><br />
-            Fran
+            Ioana &amp; Fran
           </h1>
 
-          <div style={{ width: 60, height: 1, background: "var(--gold)", margin: "32px auto" }} />
-
           <p style={{
-            fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase",
-            color: "var(--text-cream)", opacity: 0.65,
-            fontFamily: "var(--font-lato)",
-          }}>Are Getting Married at Hotel Monumento San Francisco</p>
+            fontSize: "1.7rem",  textTransform: "uppercase",
+            color: "white", 
+            fontFamily: "var(--font-quattrocento), serif",
+          }}>September 12th, 2026</p>
+        </div>
 
-          <a href="#rsvp" style={{
-            display: "inline-block", marginTop: "40px",
-            padding: "12px 40px", border: "1px solid var(--gold)",
-            color: "var(--gold)", textDecoration: "none",
-            fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase",
-            fontFamily: "var(--font-lato)",
-          }}>RSVP Here</a>
+        {/* Bottom bar */}
+        <div style={{
+          position: "absolute", bottom: 15, left: 0, right: 0, zIndex: 1,
+          display: "flex", justifyContent: "space-between", alignItems: "center",
+          padding: "24px 48px",
+        }}>
+          <p style={{
+            fontSize: "0.9rem", textTransform: "uppercase",
+            color: "white", margin: 0,
+            fontFamily: "var(--font-roboto-mono), monospace",
+          }}>Are Getting Married At</p>
+          <p style={{
+            fontSize: "0.9rem",  textTransform: "uppercase",
+            color: "white", margin: 0,
+            fontFamily: "var(--font-roboto-mono), monospace", 
+          }}>Hotel Monumento San Francisco</p>
         </div>
       </section>
 
@@ -133,7 +134,7 @@ export default function Home() {
         <div style={{ position: "relative", zIndex: 1, maxWidth: 900, margin: "0 auto" }}>
           <p style={{
             fontSize: "3rem",
-            color: "white", fontFamily: "Pinyon Script, cursive",
+            color: "white", fontFamily: "var(--font-pinyon-script), cursive",
           }}>Almost Our Forever</p>
           <Countdown />
           {/* Las 3 imagenes debajo del countdown */}

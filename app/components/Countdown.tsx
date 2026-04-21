@@ -41,20 +41,20 @@ export default function Countdown() {
         <div key={label} className="flex items-center gap-6 md:gap-10">
           <div className="text-center">
             <div
-              className="font-serif text-5xl md:text-7xl font-light"
-              style={{ color: "white", lineHeight: 1 }}
+              className="text-5xl md:text-7xl font-normal"
+              style={{ color: "white", lineHeight: 1, fontFamily: "var(--font-playfair), serif" }}
             >
               {pad(value)}
             </div>
             <div
-              className="text-xs tracking-widest uppercase mt-2"
-              style={{ color: "white", opacity: 0.6, fontFamily: "var(--font-lato)" }}
+              className="text-xs tracking-widest uppercase mt-5"
+              style={{ color: "white", opacity: 0.6, fontFamily: "var(--font-playfair), serif" }}
             >
               {label}
             </div>
           </div>
           {i < 3 && (
-            <span className="font-serif text-4xl md:text-6xl font-light mb-4" style={{ color: "white", opacity: 0.5 }}>
+            <span className="text-4xl md:text-6xl font-normal mb-4" style={{ color: "white", opacity: 0.5, fontFamily: "var(--font-playfair), serif" }}>
               :
             </span>
           )}
