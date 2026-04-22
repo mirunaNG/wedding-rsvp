@@ -15,11 +15,12 @@ const TIMELINE = [
 ];
 
 const DRESS_COLORS = [
-  "#1a1a2e",
-  "#1b3a2d",
-  "#3d1a1a",
-  "#2e2318",
-  "#111111",
+  "#000000",
+  "#3f2e27",
+  "#603527",
+  "#470516",
+  "#132248",
+  "#013223",
 ];
 
 const NAV_ITEMS = [
@@ -362,83 +363,69 @@ export default function Home() {
       </section>
 
       {/* ── DRESS CODE ───────────────────────────────────────────────────── */}
-      <section id="dress" className="section-pad" style={{ background: "var(--cream)", textAlign: "center" }}>
-        <div style={{ maxWidth: 680, margin: "0 auto" }}>
-          <p style={{ fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 12, fontFamily: "var(--font-lato)" }}>Dress Code</p>
+      <section id="dress" className="section-pad" style={{ background: "#cdc1ab", textAlign: "center" }}>
+        <div style={{ maxWidth: 750, margin: "0 auto"}}>
+          <p style={{ fontSize: "4rem", textTransform: "uppercase", color: "black", marginBottom: 0, fontFamily: "var(--font-playfair)" }}>Dress Code</p>
           <h2 style={{
-            fontFamily: "var(--font-cormorant), Georgia, serif",
-            fontSize: "clamp(2.5rem, 7vw, 5rem)", fontWeight: 300,
-            color: "var(--text-dark)", margin: "0 0 12px",
+            fontFamily: "var(--font-pinyon-script)",
+            fontSize: "2.5rem", fontWeight: 300,
+            color: "var(--text-dark)", margin: "-28px 0 0px",
           }}>Black Tie Inspired</h2>
-          <div style={{ width: 60, height: 1, background: "var(--gold)", margin: "0 auto 40px" }} />
 
-          <p style={{ fontSize: "0.85rem", lineHeight: 1.8, color: "var(--text-muted)", marginBottom: 40, fontFamily: "var(--font-lato)" }}>
+          <p style={{ fontSize: "1rem", lineHeight: 1.8, color: "black", marginBottom: 40, fontFamily: "var(--font-quattrocento)" }}>
             We would love everyone to feel their most beautiful and elegant, and to make this a night to remember.
           </p>
 
-          <div className="grid-2-small" style={{ marginBottom: 40, maxWidth: 480, marginLeft: "auto", marginRight: "auto" }}>
-            {[
-              { label: "Women", desc: "Floor-length dresses in dark hues" },
-              { label: "Men",   desc: "Suits with tie or bow tie and formal shoes" },
-            ].map(({ label, desc }) => (
-              <div key={label} style={{ padding: 24, background: "var(--cream-2)", textAlign: "left" }}>
-                <p style={{ fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 8, fontFamily: "var(--font-lato)" }}>{label}</p>
-                <p style={{ fontSize: "0.85rem", color: "var(--text-dark)", lineHeight: 1.5, fontFamily: "var(--font-lato)" }}>{desc}</p>
-              </div>
-            ))}
+          <div style={{ marginBottom: 10 }}>
+            <p style={{ fontSize: "1rem", fontWeight: 700, color: "var(--text-dark)", lineHeight: 1.8, fontFamily: "var(--font-quattrocento)", margin: 0 }}>Floor-length dresses in dark hues</p>
+            <p style={{ fontSize: "1rem", fontWeight: 700, color: "var(--text-dark)", lineHeight: 1.8, fontFamily: "var(--font-quattrocento)", margin: 0 }}>Suits with tie or bow tie and formal shoes</p>
           </div>
 
-          <div style={{ display: "flex", justifyContent: "center", gap: 16, marginBottom: 24 }}>
+          <p style={{ fontSize: "0.85rem", color: "var(--text-dark)", fontFamily: "var(--font-quattrocento)", marginBottom: 40 }}>
+            Please avoid casual wear, trainers, pastel shades, bright colours and prints.
+          </p>
+
+          <div style={{ display: "flex", justifyContent: "center", gap: 16 }}>
             {DRESS_COLORS.map((hex) => (
               <div key={hex} style={{
-                width: 34, height: 34, borderRadius: "50%",
+                width: 50, height: 50, borderRadius: "50%",
                 background: hex, boxShadow: "0 2px 8px rgba(0,0,0,0.25)",
               }} />
             ))}
           </div>
-          <p style={{ fontSize: "0.75rem", color: "var(--text-muted)", fontFamily: "var(--font-lato)", letterSpacing: "0.05em" }}>
-            Please avoid casual wear, trainers, pastel shades, bright colours and prints.
-          </p>
         </div>
       </section>
 
       {/* ── OTHER DETAILS ────────────────────────────────────────────────── */}
-      <section id="details" className="section-pad" style={{ background: "var(--cream-2)" }}>
-        <div style={{ maxWidth: 960, margin: "0 auto" }}>
+      <section id="details" className="section-pad" style={{ background: "#322e29" }}>
+        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 64 }}>
-            <p style={{ fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 12, fontFamily: "var(--font-lato)" }}>Other Details</p>
-            <div style={{ width: 60, height: 1, background: "var(--gold)", margin: "0 auto" }} />
+            <p style={{ fontSize: "4rem", color: "#faf1e1", marginBottom: 5, fontFamily: "var(--font-pinyon-script)" }}>Other Details</p>
           </div>
 
-          <div className="grid-2" style={{ gap: "48px 80px" }}>
+          <div  style={{ display: "flex", flexDirection: "column", gap: 40}}>
             {[
               {
                 title: "Emergency Contact",
                 content: (
                   <>
-                    <p style={{ fontSize: "0.85rem", lineHeight: 1.8, color: "var(--text-muted)", marginBottom: 20, fontFamily: "var(--font-lato)" }}>
-                      The day before and the wedding day will be full of excitement. If you need anything at all, please reach out to:
+                    <p style={{ fontSize: "1rem", lineHeight: 1.5, color: "#faf1e1", marginBottom: 20, fontFamily: "var(--font-quattrocento)" }}>
+                      As the wedding approaches, the day before and the wedding day itself will be full of excitement, emotions, and many special moments. 
+                      It might be a little difficult for us to be fully available, but we want you to feel completely looked after throughout the celebration.
                     </p>
-                    <div style={{ marginBottom: 12 }}>
-                      <p style={{ fontSize: "0.6rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--gold)", fontFamily: "var(--font-lato)" }}>Miruna, sister of the bride</p>
-                      <p style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.2rem", color: "var(--text-dark)" }}>+34 695 986 7 35</p>
-                    </div>
-                    <div>
-                      <p style={{ fontSize: "0.6rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--gold)", fontFamily: "var(--font-lato)" }}>Isabel, sister of the groom</p>
-                      <p style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.2rem", color: "var(--text-dark)" }}>+34 667 80 68 48</p>
-                    </div>
-                  </>
-                ),
-              },
-              {
-                title: "This One's On Us",
-                content: (
-                  <>
-                    <p style={{ fontSize: "0.85rem", lineHeight: 1.8, color: "var(--text-muted)", marginBottom: 12, fontFamily: "var(--font-lato)" }}>
-                      Once you arrive, everything is included — cocktail, dinner, and a five-hour open bar. No surprises, just the celebration.
+                     <p style={{ fontSize: "1rem", lineHeight: 1.5, color: "#faf1e1", marginBottom: 20, fontFamily: "var(--font-quattrocento)" }}>
+                      If you need anything at all, or have any questions during those days, please don’t hesitate to reach out to two very special people to us:
                     </p>
-                    <p style={{ fontSize: "0.85rem", lineHeight: 1.8, color: "var(--text-muted)", fontFamily: "var(--font-lato)" }}>
-                      The only things not included are accommodation and transportation. Just arrive ready to celebrate — we'll take care of the rest!
+                    <ul style={{ listStyle: "disc", paddingLeft: "1.2em", margin: 0 }}>
+                      <li style={{ fontSize: "1rem", lineHeight: 1.5, color: "#faf1e1", fontFamily: "var(--font-quattrocento)" }}>
+                        Miruna, sister of the bride: +34 695 986 7 35
+                      </li>
+                      <li style={{ fontSize: "1rem", lineHeight: 1.5, color: "#faf1e1", fontFamily: "var(--font-quattrocento)", marginBottom: 20 }}>
+                        Isabel, sister of the groom: +34 667 80 68 48
+                      </li>
+                    </ul>
+                    <p style={{ fontSize: "1rem", lineHeight: 1.5, color: "#faf1e1", fontFamily: "var(--font-quattrocento)" }}>
+                      They will be there to help, guide, and make sure everything runs smoothly so you can simply relax and enjoy every moment with us.
                     </p>
                   </>
                 ),
@@ -446,50 +433,100 @@ export default function Home() {
               {
                 title: "Children",
                 content: (
-                  <p style={{ fontSize: "0.85rem", lineHeight: 1.8, color: "var(--text-muted)", fontFamily: "var(--font-lato)" }}>
-                    We adore your little ones, but we're imagining an adults-only evening so everyone can fully relax. We'd love for you to treat this as a rare night off parenting duties! If there is truly no other option, please let us know in advance.
+                  <>
+                  <p style={{ fontSize: "1rem", lineHeight: 1.5, color: "#faf1e1", marginBottom: 20, fontFamily: "var(--font-quattrocento)" }}>
+                    We adore your little ones, truly, but for this celebration we’re imagining a moment for adults to fully switch off, relax and enjoy 
+                    a well deserved, responsibility free evening together.                  
                   </p>
+                  <p style={{ fontSize: "1rem", lineHeight: 1.5, color: "#faf1e1", marginBottom: 20, fontFamily: "var(--font-quattrocento)" }}>
+                    We would love for guests to see this as the perfect opportunity for a rare night off parenting duties, with grandparents, godparents 
+                    or babysitters hopefully stepping in!                   
+                  </p>
+                  <p style={{ fontSize: "1rem", lineHeight: 1.5, color: "#faf1e1", fontFamily: "var(--font-quattrocento)" }}>
+                  We kindly ask that children stay at home if possible, as there will be no babysitting service, children’s entertainment or dedicated facilities 
+                  at the venue. If children do attend, parents will need to remain fully responsible for them throughout the event.                 
+                  </p>
+                  <p style={{ fontSize: "1rem", lineHeight: 1.5, color: "#faf1e1",  marginBottom: 20, fontFamily: "var(--font-quattrocento)" }}>
+                  That said, we completely understand that this is not always feasible, so if there is no other option, of course you are welcome to bring them with 
+                  you, just let us know in advance.                
+                  </p>
+                  <p style={{ fontSize: "1rem", lineHeight: 1.5, color: "#faf1e1", fontFamily: "var(--font-quattrocento)" }}>
+                  As the evening continues, after dinner the celebration will turn into a party with a more adult atmosphere. Thank you for understanding and for
+                  helping us create the celebration we have envisioned!              
+                  </p>
+                </>
                 ),
               },
               {
                 title: "Plus-Ones",
                 content: (
-                  <p style={{ fontSize: "0.85rem", lineHeight: 1.8, color: "var(--text-muted)", fontFamily: "var(--font-lato)" }}>
-                    If your invitation includes a guest's name, they're invited. Otherwise, we're keeping the celebration intimate and are unable to accommodate additional guests.
+                  <p style={{ fontSize: "1rem", lineHeight: 1.5, color: "#faf1e1", fontFamily: "var(--font-quattrocento)" }}>
+                    If your invitation includes a gue’s name, then yes, they’re invited. Otherwise, we’re keeping the celebration intimate and are unable to 
+                    acommodate additional guests. 
                   </p>
+                ),
+              },
+              {
+                title: "This One's On Us",
+                content: (
+                  <>
+                    <p style={{ fontSize: "1rem", lineHeight: 1.5, color: "#faf1e1", marginBottom: 20, fontFamily: "var(--font-quattrocento)" }}>
+                      We know many of you are travelling from different places where weddings are done in very different ways, so just to make it simple, 
+                      here everything is included once you arrive. No surprises, just the celebration.
+                    </p>
+                    <p style={{ fontSize: "1rem", lineHeight: 1.5, color: "#faf1e1", marginBottom: 20, fontFamily: "var(--font-quattrocento)" }}>
+                      From the moment you arrive, you will be welcomed with a cocktail and drinks, followed by a relaxed food experience, then dinner, and later 
+                      an open bar to keep the celebration going. After dinner, we will continue with a five hour open bar where everything is covered as part of 
+                      the celebration.
+                    </p>
+                    <p style={{ fontSize: "1rem", lineHeight: 1.5, color: "#faf1e1", fontFamily: "var(--font-quattrocento)" }}>
+                      The only things not included are accommodation and transportation. 
+                    </p>
+                    <p style={{ fontSize: "1rem", lineHeight: 1.5, color: "#faf1e1", fontFamily: "var(--font-quattrocento)" }}>
+                      In short, just arrive ready to celebrate. We’ll take care of the rest!
+                    </p>
+                  </>
                 ),
               },
               {
                 title: "An Unplugged Ceremony",
                 content: (
-                  <p style={{ fontSize: "0.85rem", lineHeight: 1.8, color: "var(--text-muted)", fontFamily: "var(--font-lato)" }}>
-                    We kindly ask that the ceremony is <strong style={{ color: "var(--text-dark)" }}>phone free</strong>. We want that moment seen with your eyes, not through screens. Once we move beyond the ceremony, please feel free to capture everything!
-                  </p>
-                ),
-              },
-              {
-                title: "Wedding Album",
-                content: (
                   <>
-                    <p style={{ fontSize: "0.85rem", lineHeight: 1.8, color: "var(--text-muted)", marginBottom: 24, fontFamily: "var(--font-lato)" }}>
-                      We'll share a joint photo album where you can upload anything you capture. We'd love to see the day through your eyes too!
+                    <p style={{ fontSize: "1rem", lineHeight: 1.5, color: "#faf1e1", marginBottom: 20, fontFamily: "var(--font-quattrocento)" }}>
+                       We’ve gone a little all in on capturing this day properly, with a professional photographer and videographer who will be documenting every laugh, 
+                       tear and questionable dance move so we can all stay fully present and enjoy it properly.
                     </p>
-                    <a href="#" style={{
-                      display: "inline-block", padding: "10px 28px",
-                      background: "var(--dark)", color: "var(--gold)",
-                      textDecoration: "none", fontSize: "0.6rem",
-                      letterSpacing: "0.15em", textTransform: "uppercase",
-                      fontFamily: "var(--font-lato)",
-                    }}>Shared Album →</a>
+                    <p style={{ fontSize: "1rem", lineHeight: 1.5, color: "#faf1e1", fontFamily: "var(--font-quattrocento)" }}>
+                       For this reason, we kindly ask that the ceremony is phone free. We would love for that moment to be seen with your eyes, not through screens, 
+                       and to avoid a sea of phones in front of faces during the most emotional part of the day. 
+                    </p>
+                    <p style={{ fontSize: "1rem", lineHeight: 1.5, color: "#faf1e1", marginBottom: 20, fontFamily: "var(--font-quattrocento)" }}>
+                       Once we move beyond the ceremony, please feel free to bring your phones out and capture all the fun, chaos and details. We absolutely love seeing 
+                       the day through your perspective.
+                    </p>
+                    <p style={{ fontSize: "1rem", lineHeight: 1.5, color: "#faf1e1", marginBottom: 40, fontFamily: "var(--font-quattrocento)" }}>
+                       We will also share a joint photo album where you can upload anything you capture. We would genuinely love to see your photos too, please drop them
+                       in the Album:
+                    </p>
+                    <div style={{ textAlign: "center" }}>
+                      <Link href={"https://photos.google.com/share/AF1QipMQY0I4-kKImEDWaZdXHfjrk1fdtRMRo4gpI0pPkG6FnCaeLmaDLyfh6Z-oOnySOA?key=LXlQbTIxRXJxb1BhcmppLU9odXhMeGY0azNHckp3"}
+                      style={{
+                        display: "inline-block", padding: "10px 28px",
+                        background: "#775f4c", color: "#faf1e1",
+                        textDecoration: "none", fontSize: "2rem",
+                        borderRadius: 5,
+                        fontFamily: "var(--font-pinyon-script), cursive", 
+                      }}>Wedding Album </Link>
+                    </div>
                   </>
                 ),
               },
             ].map(({ title, content }) => (
               <div key={title}>
                 <h3 style={{
-                  fontFamily: "var(--font-cormorant), Georgia, serif",
-                  fontSize: "1.6rem", color: "var(--text-dark)",
-                  marginBottom: 16, fontWeight: 400,
+                  fontFamily: "var(--font-playfair, serif)", textTransform: "uppercase",
+                  fontSize: "1.6rem", color: "#faf1e1", 
+                  marginBottom: 10, fontWeight: 650,
                 }}>{title}</h3>
                 {content}
               </div>
